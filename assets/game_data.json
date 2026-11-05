@@ -1,0 +1,440 @@
+{
+    "assets": {
+        "names": {
+            "Prefixes": [
+                "Acolyte",
+                "Wanderer",
+                "Silent"
+            ],
+            "Names": [
+                "Elena",
+                "Cantor",
+                "Magdalena",
+                "Leo",
+                "Mateo",
+                "Vihan",
+                "Gep"
+            ],
+            "Suffixes": [
+                "the Austere",
+                "of the Mists",
+                "the Revered",
+                "the Reviled",
+                "the Diagonal"
+            ]
+        },
+        "base_stats": {
+            "hp": 100,
+            "max_hp": 100,
+            "defense": 1,
+            "attack": 10,
+            "strength": 1,
+            "speed": 10,
+            "xp": 0,
+            "mana": 0,
+            "luck": 1
+        },
+        "skills": {
+            "Agi": {
+                "type": "attack",
+                "use_cost": 3,
+                "cost": 10,
+                "level": 1,
+                "requirements": [],
+                "effect": "20 damage"
+            },
+            "Dia": {
+                "type": "heal",
+                "use_cost": 3,
+                "cost": 15,
+                "level": 1,
+                "requirements": ["Agi"],
+                "effect": "30 hp"
+            },
+            "Life_bonus": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 15,
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "+ 15 max_hp"
+            },
+            "Rakukaja": {
+                "type": "buff",
+                "use_cost": 8,
+                "cost": 20,
+                "level": 2,
+                "requirements": ["Agi"],
+                "effect": "0.25 defense"
+            },
+            "Sukukaja": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 15,
+                "level": 2,
+                "requirements": ["Agi"],
+                "effect": "+ 5 speed"
+            },
+            "Mana_bonus": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 20,
+                "level": 2,
+                "requirements": ["Life_bonus"],
+                "effect": "+ 0.5 luck"
+            },
+            "Agilao": {
+                "type": "attack",
+                "use_cost": 6,
+                "cost": 25,
+                "level": 3,
+                "requirements": ["Agi"],
+                "effect": "25 damage"
+            },
+            "Diarama": {
+                "type": "heal",
+                "use_cost": 6,
+                "cost": 30,
+                "level": 3,
+                "requirements": ["Dia"],
+                "effect": "60 hp"
+            },
+            "Tarukaja": {
+                "type": "buff",
+                "use_cost": 8,
+                "cost": 30,
+                "level": 3,
+                "requirements": ["Rakukaja", "Sukukaja"],
+                "effect": "0.25 strength"
+            },
+            "Mana_gain": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 30,
+                "level": 3,
+                "requirements": ["Sukukaja", "Mana_bonus"],
+                "effect": "+ 1 luck"
+            },
+            "Life_gain": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 25,
+                "level": 4,
+                "requirements": ["Life_bonus", "Rakukaja"],
+                "effect": "+ 30 max_hp"
+            },
+            "Rakukajaon": {
+                "type": "buff",
+                "use_cost": 16,
+                "cost": 35,
+                "level": 4,
+                "requirements": ["Rakukaja"],
+                "effect": "0.5 defense"
+            },
+            "Sukukajaon": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 25,
+                "level": 4,
+                "requirements": ["Sukukaja"],
+                "effect": "+ 8 speed"
+            },
+            "Agidyne": {
+                "type": "attack",
+                "use_cost": 12,
+                "cost": 50,
+                "level": 5,
+                "requirements": ["Agilao", "Tarukaja"],
+                "effect": "30 damage"
+            },
+            "Tarukajaon": {
+                "type": "buff",
+                "use_cost": 16,
+                "cost": 45,
+                "level": 5,
+                "requirements": ["Tarukaja"],
+                "effect": "0.5 strength"
+            },
+            "Mana_surge": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 45,
+                "level": 5,
+                "requirements": ["Sukukajaon", "Mana_gain"],
+                "effect": "+ 1.5 luck"
+            },
+            "Trisagion": {
+                "type": "attack",
+                "use_cost": 18,
+                "cost": 65,
+                "level": 6,
+                "requirements": ["Agidyne", "Tarukajaon"],
+                "effect": "40 damage"
+            },
+            "Diarahan": {
+                "type": "heal",
+                "use_cost": 12,
+                "cost": 60,
+                "level": 2,
+                "requirements": ["Diarama", "Mana_surge"],
+                "effect": "999 hp"
+            },
+            "Life_surge": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 60,
+                "level": 6,
+                "requirements": ["Life_gain", "Rakukajaon"],
+                "effect": "+ 45 max_hp"
+            },
+            "Luster_candy": {
+                "type": "buff",
+                "use_cost": 20,
+                "cost": 75,
+                "level": 6,
+                "requirements": ["Rakukajaon", "Sukukajaon", "Tarukajaon"],
+                "effect": "0.75 strength defense"
+            }
+        },
+        "allies": [
+            {
+                "name": "Dwarf",
+                "hp": 15,
+                "attack": 5,
+                "speed": 4 
+            },
+            {
+                "name": "Elf",
+                "hp": 20,
+                "attack": 3,
+                "speed": 20 
+            },
+            {
+                "name": "Wizard",
+                "hp": 10,
+                "attack": 8,
+                "speed": 10 
+            },
+            {
+                "name": "Saytr",
+                "hp": 18,
+                "attack": 4,
+                "speed": 15 
+            }
+        ],
+        "enemies": [
+            {
+                "name": "Anomaly",
+                "hp": 30,
+                "attack": 10,
+                "speed": 5,
+                "xp": 20,
+                "mana": 5,
+                "ai": {
+                    "type": "attack",
+                    "target": "random"
+                },
+                "affinities": {
+                    "light": "str"
+                }
+            },
+            {
+                "name": "Skeleton",
+                "hp": 15,
+                "attack": 6,
+                "speed": 15,
+                "xp": 15,
+                "mana": 3,
+                "ai": {
+                    "type": "first_turn",
+                    "choices": [
+                        {
+                            "type": "strength 2",
+                            "target": "self"
+                        },
+                        {
+                            "type": "attack",
+                            "target": "hero"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "lightning": "wk",
+                    "ice": "str",
+                    "fire": "str"
+                }
+            },
+            {
+                "name": "Kobold",
+                "hp": 10,
+                "attack": 6,
+                "speed": 15,
+                "xp": 10,
+                "mana": 3,
+                "ai": {
+                    "type": "low_hp",
+                    "choices": [
+                        {
+                            "type": "random",
+                            "choices": [
+                                {
+                                    "type": "attack",
+                                    "target": "lowest_hp"
+                                },
+                                {
+                                    "type": "defend",
+                                    "target": "self"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "attack",
+                            "target": "lowest_hp"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "wind": "str"
+                }
+            },
+            {
+                "name": "Wight",
+                "hp": 20,
+                "attack": 8,
+                "speed": 3,
+                "xp": 20,
+                "mana": 4,
+                "ai": {
+                    "type": "random",
+                    "choices": [
+                        {
+                            "type": "strength 2",
+                            "target": "self"
+                        },
+                        {
+                            "type": "attack",
+                            "target": "random"
+                        },
+                        {
+                            "type": "defend",
+                            "target": "self"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "dark": "str"
+                }
+            }
+        ],
+        "locations": {
+            "Forest": {
+                "description": "Dark, and old. No light seeps through the treetops.",
+                "enemies": [
+                    "Anomaly",
+                    "Skeleton"
+                ],
+                "allies": [
+                    "Elf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Tome"
+                ],
+                "coords": [
+                    0,
+                    3
+                ]
+            },
+            "Cave": {
+                "description": "A faint drip, seemingly miles back. The shuffling of many feet, in the darkness..",
+                "enemies": [
+                    "Kobold",
+                    "Wight"
+                ],
+                "allies": [
+                    "Dwarf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Potion"
+                ],
+                "coords": [
+                    0,
+                    1
+                ]
+            },
+            "Town": {
+                "description": "A bustling town square, a whirl of kind faces, ale, and merriment. A smith labors at her anvil.",
+                "enemies": [
+                    "Skeleton",
+                    "Kobold"
+                ],
+                "allies": [
+                    "Wizard"
+                ],
+                "loot": [
+                    "Scroll",
+                    "Potion"
+                ],
+                "coords": [
+                    0,
+                    0
+                ]
+            },
+            "City": {
+                "description": "Old monuments and buildings in some lost architectural style. Many eyes peer out of towers.",
+                "enemies": [
+                    "Wight",
+                    "Skeleton"
+                ],
+                "allies": [
+                    "Wizard"
+                ],
+                "loot": [
+                    "Scroll",
+                    "Scroll"
+                ],
+                "coords": [
+                    0,
+                    2
+                ]
+            },
+            "Desert": {
+                "description": "Waves of sand, a surface like glass, radiating heat. You can make out distant features. Or are they just mirages?",
+                "enemies": [
+                    "Anomaly",
+                    "Kobold"
+                ],
+                "allies": [
+                    "Dwarf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Scroll"
+                ],
+                "coords": [
+                    1,
+                    1
+                ]
+            },
+            "Mountains": {
+                "description": "Jagged peaks protrude from an indiscernible mass of snow.",
+                "enemies": [
+                    "Anomaly",
+                    "Wight"
+                ],
+                "allies": [
+                    "Saytr"
+                ],
+                "loot": [
+                    "Potion",
+                    "Potion"
+                ],
+                "coords": [
+                    1,
+                    2
+                ]
+            }
+        }
+    }
+}
