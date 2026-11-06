@@ -21,4 +21,10 @@ public class Main extends Game {
         float progress = manager.getProgress();
         super.render();
     }
+
+    @Override
+    public void dispose() {
+        manager.dispose();
+        super.dispose();
+    }
 }
