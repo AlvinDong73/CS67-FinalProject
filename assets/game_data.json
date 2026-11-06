@@ -1,0 +1,537 @@
+{
+    "assets": {
+        "base_stats": {
+            "hp": 100,
+            "max_hp": 100,
+            "mp": 50,
+            "max_mp": 50,
+            "strength": 3,
+            "magic": 3,
+            "vitality": 3,
+            "agility": 3,
+            "xp": 0,
+            "money": 0
+        },
+        "skills": {
+            "Lunge": {
+                "type": "phys",
+                "hp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "25 damage 15% crit"
+            },
+            "Agi": {
+                "type": "magic fire",
+                "mp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "20 damage"
+            },
+            "Bufu": {
+                "type": "magic ice",
+                "mp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "20 damage"
+            },
+            "Zio": {
+                "type": "magic elec",
+                "mp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "20 damage"
+            },
+            "Zan": {
+                "type": "magic wind",
+                "mp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "20 damage"
+            },
+            "Dia": {
+                "type": "heal",
+                "mp_cost": 3,
+                "level": 1,
+                "requirements": [],
+                "effect": "30 hp"
+            },
+            "Life_bonus": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "10 % max_hp"
+            },
+            "Mana_bonus": {
+                "type": "passive",
+                "level": 2,
+                "requirements": [["Agi", "Bufu", "Zio", "Zan"], "Dia"],
+                "effect": "10 % max_mp"
+            },
+            "Life_aid": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "10 % max_hp recovery"
+            },
+            "Mana_aid": {
+                "type": "passive",
+                "level": 2,
+                "requirements": [["Agi", "Bufu", "Zio", "Zan"]],
+                "effect": "10 % max_mp recovery"
+            },
+            "Freeze_boost": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Bufu"],
+                "effect": "freeze 5 %"
+            },
+            "Shock_boost": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Zio"],
+                "effect": "shock 5 %"
+            },
+            "Tarukaja": {
+                "type": "buff phys",
+                "mp_cost": 8,
+                "duration": 3,
+                "level": 2,
+                "requirements": ["Lunge"],
+                "effect": "1.25 phys attack"
+            },
+            "Makakaja": {
+                "type": "buff magic",
+                "mp_cost": 8,
+                "duration": 3,
+                "level": 2,
+                "requirements": [["Agi", "Bufu", "Zio", "Zan"]],
+                "effect": "1.25 magic attack"
+            },
+            "Rakukaja": {
+                "type": "buff defense",
+                "mp_cost": 8,
+                "duration": 3,
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "1.25 defense"
+            },
+            "Assault_dive": {
+                "type": "phys",
+                "hp_cost": 10,
+                "level": 2,
+                "requirements": ["Lunge"],
+                "effect": "40 damage 15% crit"
+            },
+            "Berserk": {
+                "type": "phys",
+                "hp_cost": 15,
+                "level": 2,
+                "requirements": ["Lunge"],
+                "effect": "20 damage 10% crit random 3"
+            },
+            "Agilao": {
+                "type": "magic fire",
+                "mp_cost": 8,
+                "level": 2,
+                "requirements": ["Agi"],
+                "effect": "35 damage"
+            },
+            "Maragi": {
+                "type": "magic fire",
+                "mp_cost": 10,
+                "level": 2,
+                "requirements": ["Agi"],
+                "effect": "20 damage all"
+            },
+            "Bufula": {
+                "type": "magic ice",
+                "mp_cost": 8,
+                "level": 2,
+                "requirements": ["Bufu"],
+                "effect": "35 damage"
+            },
+            "Mabufu": {
+                "type": "magic ice",
+                "mp_cost": 10,
+                "level": 2,
+                "requirements": ["Bufu"],
+                "effect": "20 damage all"
+            },
+            "Zionga": {
+                "type": "magic elec",
+                "mp_cost": 8,
+                "level": 2,
+                "requirements": ["Zio"],
+                "effect": "35 damage"
+            },
+            "Mazio": {
+                "type": "magic elec",
+                "mp_cost": 10,
+                "level": 2,
+                "requirements": ["Zio"],
+                "effect": "20 damage all"
+            },
+            "Zanma": {
+                "type": "magic wind",
+                "mp_cost": 8,
+                "level": 2,
+                "requirements": ["Zan"],
+                "effect": "35 damage"
+            },
+            "Mazan": {
+                "type": "magic wind",
+                "mp_cost": 10,
+                "level": 2,
+                "requirements": ["Zan"],
+                "effect": "20 damage all"
+            },
+            "Diarama": {
+                "type": "heal",
+                "use_cost": 6,
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "60 hp"
+            },
+            "Life_gain": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Life_bonus", ["Rakukaja", "Diarama"]],
+                "effect": "20 % max_hp"
+            },
+            "Mana_gain": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Mana_bonus", "Makakaja", ["Maragi", "Mabufu", "Mazio", "Mazan"]],
+                "effect": "20 % max_mp"
+            },
+            "Phys_boost": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Assault_dive", "Berserk"],
+                "effect": "phys x 1.2"
+            },
+            "Fire_boost": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Agilao", "Maragi"],
+                "effect": "fire x 1.2"
+            },
+            "Ice_boost": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Bufula", "Mabufu"],
+                "effect": "ice x 1.2"
+            },
+            "Elec_boost": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Zionga", "Mazio"],
+                "effect": "elec x 1.2"
+            },
+            "Wind_boost": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Zanma", "Mazan"],
+                "effect": "wind x 1.2"
+            },
+            "Fire_breath": {
+                "type": "magic fire",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Maragi", "Makakaja"],
+                "effect": "20 damage random 3"
+            },
+            "Ice_breath": {
+                "type": "magic ice",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mabufu", "Makakaja"],
+                "effect": "20 damage random 3"
+            },
+            "Shockbound": {
+                "type": "magic elec",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mazio", "Makakaja"],
+                "effect": "20 damage random 3"
+            },
+            "Wind_breath": {
+                "type": "magic wind",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mazan", "Makakaja"],
+                "effect": "20 damage random 3"
+            },
+            "Tarunda": {
+                "type": "debuff attack",
+                "use_cost": 8,
+                "duration": 3,
+                "level": 3,
+                "requirements": ["Rakukaja", ["Diarama", "Life_gain", "Life_aid"]],
+                "effect": "0.66 attack"
+            },
+            "Rakunda": {
+                "type": "debuff defense",
+                "use_cost": 8,
+                "duration": 3,
+                "level": 3,
+                "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Agilao", "Bufula", "Zionga", "Zanma"]],
+                "effect": "0.66 defense"
+            },
+            "Mana_surge": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 45,
+                "level": 5,
+                "requirements": ["Sukukajaon", "Mana_gain"],
+                "effect": "+ 1.5 luck"
+            },
+            "Trisagion": {
+                "type": "attack",
+                "use_cost": 18,
+                "cost": 65,
+                "level": 6,
+                "requirements": ["Agidyne", "Tarukajaon"],
+                "effect": "40 damage"
+            },
+            "Diarahan": {
+                "type": "heal",
+                "use_cost": 12,
+                "cost": 60,
+                "level": 2,
+                "requirements": ["Diarama", "Mana_surge"],
+                "effect": "999 hp"
+            },
+            "Life_surge": {
+                "type": "passive",
+                "use_cost": null,
+                "cost": 60,
+                "level": 6,
+                "requirements": ["Life_gain", "Rakukajaon"],
+                "effect": "+ 45 max_hp"
+            },
+            "Luster_candy": {
+                "type": "buff",
+                "use_cost": 20,
+                "cost": 75,
+                "level": 6,
+                "requirements": ["Rakukajaon", "Sukukajaon", "Tarukajaon"],
+                "effect": "0.75 strength defense"
+            }
+        },
+        "enemies": [
+            {
+                "name": "Anomaly",
+                "hp": 30,
+                "attack": 10,
+                "speed": 5,
+                "xp": 20,
+                "mana": 5,
+                "ai": {
+                    "type": "attack",
+                    "target": "random"
+                },
+                "affinities": {
+                    "light": "str"
+                }
+            },
+            {
+                "name": "Skeleton",
+                "hp": 15,
+                "attack": 6,
+                "speed": 15,
+                "xp": 15,
+                "mana": 3,
+                "ai": {
+                    "type": "first_turn",
+                    "choices": [
+                        {
+                            "type": "strength 2",
+                            "target": "self"
+                        },
+                        {
+                            "type": "attack",
+                            "target": "hero"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "lightning": "wk",
+                    "ice": "str",
+                    "fire": "str"
+                }
+            },
+            {
+                "name": "Kobold",
+                "hp": 10,
+                "attack": 6,
+                "speed": 15,
+                "xp": 10,
+                "mana": 3,
+                "ai": {
+                    "type": "low_hp",
+                    "choices": [
+                        {
+                            "type": "random",
+                            "choices": [
+                                {
+                                    "type": "attack",
+                                    "target": "lowest_hp"
+                                },
+                                {
+                                    "type": "defend",
+                                    "target": "self"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "attack",
+                            "target": "lowest_hp"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "wind": "str"
+                }
+            },
+            {
+                "name": "Wight",
+                "hp": 20,
+                "attack": 8,
+                "speed": 3,
+                "xp": 20,
+                "mana": 4,
+                "ai": {
+                    "type": "random",
+                    "choices": [
+                        {
+                            "type": "strength 2",
+                            "target": "self"
+                        },
+                        {
+                            "type": "attack",
+                            "target": "random"
+                        },
+                        {
+                            "type": "defend",
+                            "target": "self"
+                        }
+                    ]
+                },
+                "affinities": {
+                    "dark": "str"
+                }
+            }
+        ],
+        "locations": {
+            "Forest": {
+                "description": "Dark, and old. No light seeps through the treetops.",
+                "enemies": [
+                    "Anomaly",
+                    "Skeleton"
+                ],
+                "allies": [
+                    "Elf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Tome"
+                ],
+                "coords": [
+                    0,
+                    3
+                ]
+            },
+            "Cave": {
+                "description": "A faint drip, seemingly miles back. The shuffling of many feet, in the darkness..",
+                "enemies": [
+                    "Kobold",
+                    "Wight"
+                ],
+                "allies": [
+                    "Dwarf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Potion"
+                ],
+                "coords": [
+                    0,
+                    1
+                ]
+            },
+            "Town": {
+                "description": "A bustling town square, a whirl of kind faces, ale, and merriment. A smith labors at her anvil.",
+                "enemies": [
+                    "Skeleton",
+                    "Kobold"
+                ],
+                "allies": [
+                    "Wizard"
+                ],
+                "loot": [
+                    "Scroll",
+                    "Potion"
+                ],
+                "coords": [
+                    0,
+                    0
+                ]
+            },
+            "City": {
+                "description": "Old monuments and buildings in some lost architectural style. Many eyes peer out of towers.",
+                "enemies": [
+                    "Wight",
+                    "Skeleton"
+                ],
+                "allies": [
+                    "Wizard"
+                ],
+                "loot": [
+                    "Scroll",
+                    "Scroll"
+                ],
+                "coords": [
+                    0,
+                    2
+                ]
+            },
+            "Desert": {
+                "description": "Waves of sand, a surface like glass, radiating heat. You can make out distant features. Or are they just mirages?",
+                "enemies": [
+                    "Anomaly",
+                    "Kobold"
+                ],
+                "allies": [
+                    "Dwarf"
+                ],
+                "loot": [
+                    "Potion",
+                    "Scroll"
+                ],
+                "coords": [
+                    1,
+                    1
+                ]
+            },
+            "Mountains": {
+                "description": "Jagged peaks protrude from an indiscernible mass of snow.",
+                "enemies": [
+                    "Anomaly",
+                    "Wight"
+                ],
+                "allies": [
+                    "Saytr"
+                ],
+                "loot": [
+                    "Potion",
+                    "Potion"
+                ],
+                "coords": [
+                    1,
+                    2
+                ]
+            }
+        }
+    }
+}
