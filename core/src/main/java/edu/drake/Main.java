@@ -5,10 +5,11 @@ import com.badlogic.gdx.assets.AssetManager;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Main extends Game {
-    private AssetManager manager = new AssetManager();
+    private AssetManager manager;
 
     @Override
     public void create() {
+        manager = new AssetManager();
         setScreen(new FirstScreen());
     }
 
