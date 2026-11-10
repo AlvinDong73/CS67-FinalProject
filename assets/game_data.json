@@ -14,29 +14,36 @@
         },
         "skills": {
             "Lunge": {
-                "type": "phys",
-                "hp_cost": 3,
+                "type": "strength phys",
+                "hp_cost": 5,
                 "level": 1,
                 "requirements": [],
-                "effect": "25 damage 15% crit"
+                "effect": "25 damage 10 % crit"
+            },
+            "Needle Shot": {
+                "type": "strength pierce",
+                "hp_cost": 5,
+                "level": 1,
+                "requirements": [],
+                "effect": "15 damage 20 % crit"
             },
             "Agi": {
                 "type": "magic fire",
                 "mp_cost": 3,
                 "level": 1,
                 "requirements": [],
-                "effect": "20 damage"
+                "effect": "25 damage"
             },
             "Bufu": {
                 "type": "magic ice",
-                "mp_cost": 3,
+                "mp_cost": 4,
                 "level": 1,
                 "requirements": [],
                 "effect": "20 damage"
             },
             "Zio": {
                 "type": "magic elec",
-                "mp_cost": 3,
+                "mp_cost": 4,
                 "level": 1,
                 "requirements": [],
                 "effect": "20 damage"
@@ -46,14 +53,14 @@
                 "mp_cost": 3,
                 "level": 1,
                 "requirements": [],
-                "effect": "20 damage"
+                "effect": "25 damage"
             },
             "Dia": {
                 "type": "heal",
                 "mp_cost": 3,
                 "level": 1,
                 "requirements": [],
-                "effect": "30 hp"
+                "effect": "45 hp"
             },
             "Life_bonus": {
                 "type": "passive",
@@ -79,17 +86,23 @@
                 "requirements": [["Agi", "Bufu", "Zio", "Zan"]],
                 "effect": "10 % max_mp recovery"
             },
+            "Crit_boost": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Lunge", "Needle_shot"],
+                "effect": "crit_chance x 1.2"
+            },
             "Freeze_boost": {
                 "type": "passive",
                 "level": 2,
                 "requirements": ["Bufu"],
-                "effect": "freeze 5 %"
+                "effect": "freeze_chance 10 %"
             },
             "Shock_boost": {
                 "type": "passive",
                 "level": 2,
                 "requirements": ["Zio"],
-                "effect": "shock 5 %"
+                "effect": "shock_chance 10 %"
             },
             "Tarukaja": {
                 "type": "buff phys",
@@ -116,18 +129,32 @@
                 "effect": "1.25 defense"
             },
             "Assault_dive": {
-                "type": "phys",
+                "type": "strength phys",
                 "hp_cost": 10,
                 "level": 2,
                 "requirements": ["Lunge"],
-                "effect": "40 damage 15% crit"
+                "effect": "40 damage 15 % crit"
             },
             "Berserk": {
-                "type": "phys",
+                "type": "strength phys",
                 "hp_cost": 15,
                 "level": 2,
                 "requirements": ["Lunge"],
-                "effect": "20 damage 10% crit random 3"
+                "effect": "20 damage 10 % crit random-target x 1 - 3"
+            },
+            "Shock_needle": {
+                "type": "strength elec",
+                "hp_cost": 8,
+                "level": 2,
+                "requirements": ["Needle_shot", "Zio"],
+                "effect": "30 damage 20 % crit single-target x 1 - 2"
+            },
+            "Rapid_needle": {
+                "type": "strength pierce",
+                "hp_cost": 10,
+                "level": 2,
+                "requirements": ["Needle_shot"],
+                "effect": "15 damage 15 % crit random-target x 1 - 3"
             },
             "Agilao": {
                 "type": "magic fire",
@@ -142,6 +169,13 @@
                 "level": 2,
                 "requirements": ["Agi"],
                 "effect": "20 damage all"
+            },
+            "Frostburn": {
+                "type": "magic fire",
+                "mp_cost": 12,
+                "level": 2,
+                "requirements": ["Agi", "Freeze_boost"],
+                "effect": "45 damage freeze_chance + 10 damage against frozen"
             },
             "Bufula": {
                 "type": "magic ice",
@@ -185,12 +219,33 @@
                 "requirements": ["Zan"],
                 "effect": "20 damage all"
             },
+            "Wind_cutter": {
+                "type": "magic phys",
+                "mp_cost": 10,
+                "level": 2,
+                "requirements": ["Lunge", "Zan"],
+                "effect": "40 damage"
+            },
+            "Hama": {
+                "type": "magic light",
+                "mp_cost": 12,
+                "level": 2,
+                "requirements": [["Agilao", "Bufula", "Zionga", "Zanma"], ["Frostburn", "Wind_cutter"]],
+                "effect": "45 damage"
+            },
+            "Mudo": {
+                "type": "magic dark",
+                "mp_cost": 12,
+                "level": 2,
+                "requirements": [["Maragi", "Mabufu", "Mazio", "Mazan"], ["Frostburn", "Wind_cutter"]],
+                "effect": "45 damage"
+            },
             "Diarama": {
                 "type": "heal",
                 "use_cost": 6,
                 "level": 2,
                 "requirements": ["Dia"],
-                "effect": "60 hp"
+                "effect": "90 hp"
             },
             "Life_gain": {
                 "type": "passive",
@@ -234,33 +289,11 @@
                 "requirements": ["Zanma", "Mazan"],
                 "effect": "wind x 1.2"
             },
-            "Fire_breath": {
-                "type": "magic fire",
-                "use_cost": 12,
+            "Heal_boost": {
+                "type": "passive",
                 "level": 3,
-                "requirements": ["Maragi", "Makakaja"],
-                "effect": "20 damage random 3"
-            },
-            "Ice_breath": {
-                "type": "magic ice",
-                "use_cost": 12,
-                "level": 3,
-                "requirements": ["Mabufu", "Makakaja"],
-                "effect": "20 damage random 3"
-            },
-            "Shockbound": {
-                "type": "magic elec",
-                "use_cost": 12,
-                "level": 3,
-                "requirements": ["Mazio", "Makakaja"],
-                "effect": "20 damage random 3"
-            },
-            "Wind_breath": {
-                "type": "magic wind",
-                "use_cost": 12,
-                "level": 3,
-                "requirements": ["Mazan", "Makakaja"],
-                "effect": "20 damage random 3"
+                "requirements": ["Diarama", "Life_gain"],
+                "effect": "heal x 1.5"
             },
             "Tarunda": {
                 "type": "debuff attack",
@@ -275,8 +308,44 @@
                 "use_cost": 8,
                 "duration": 3,
                 "level": 3,
-                "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Agilao", "Bufula", "Zionga", "Zanma"]],
+                "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Rapid_needle", "Agilao", "Bufula", "Zionga", "Zanma"]],
                 "effect": "0.66 defense"
+            },
+            "Fire_breath": {
+                "type": "magic fire",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Maragi", "Makakaja"],
+                "effect": "20 damage random-target x 1 - 3"
+            },
+            "Ice_breath": {
+                "type": "magic ice",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mabufu", "Makakaja"],
+                "effect": "20 damage random-target x 1 - 3"
+            },
+            "Shockbound": {
+                "type": "magic elec",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mazio", "Makakaja"],
+                "effect": "20 damage random-target x 1 - 3"
+            },
+            "Wind_breath": {
+                "type": "magic wind",
+                "use_cost": 12,
+                "level": 3,
+                "requirements": ["Mazan", "Makakaja"],
+                "effect": "20 damage random-target x 1 - 3"
+            },
+            "Recarm": {
+                "type": "heal",
+                "use_cost": 8,
+                "duration": 3,
+                "level": 3,
+                "requirements": ["Diarama", "Makakaja"],
+                "effect": "40 hp every turn"
             },
             "Mana_surge": {
                 "type": "passive",
