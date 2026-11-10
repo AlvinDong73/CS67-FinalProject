@@ -15,14 +15,14 @@
         "skills": {
             "Lunge": {
                 "type": "strength phys",
-                "hp_cost": 5,
+                "hp_cost": 2,
                 "level": 1,
                 "requirements": [],
                 "effect": "25 damage 10 % crit"
             },
             "Needle Shot": {
                 "type": "strength pierce",
-                "hp_cost": 5,
+                "hp_cost": 3,
                 "level": 1,
                 "requirements": [],
                 "effect": "15 damage 20 % crit"
@@ -68,23 +68,23 @@
                 "requirements": ["Dia"],
                 "effect": "10 % max_hp"
             },
+            "Life_aid": {
+                "type": "passive",
+                "level": 2,
+                "requirements": ["Dia"],
+                "effect": "25 % max_hp recovery"
+            },
             "Mana_bonus": {
                 "type": "passive",
                 "level": 2,
                 "requirements": [["Agi", "Bufu", "Zio", "Zan"], "Dia"],
                 "effect": "10 % max_mp"
             },
-            "Life_aid": {
-                "type": "passive",
-                "level": 2,
-                "requirements": ["Dia"],
-                "effect": "10 % max_hp recovery"
-            },
             "Mana_aid": {
                 "type": "passive",
                 "level": 2,
                 "requirements": [["Agi", "Bufu", "Zio", "Zan"]],
-                "effect": "10 % max_mp recovery"
+                "effect": "25 % max_mp recovery"
             },
             "Crit_boost": {
                 "type": "passive",
@@ -130,28 +130,28 @@
             },
             "Assault_dive": {
                 "type": "strength phys",
-                "hp_cost": 10,
+                "hp_cost": 5,
                 "level": 2,
                 "requirements": ["Lunge"],
                 "effect": "40 damage 15 % crit"
             },
             "Berserk": {
                 "type": "strength phys",
-                "hp_cost": 15,
+                "hp_cost": 8,
                 "level": 2,
                 "requirements": ["Lunge"],
                 "effect": "20 damage 10 % crit random-target x 1 - 3"
             },
             "Shock_needle": {
                 "type": "strength elec",
-                "hp_cost": 8,
+                "hp_cost": 6,
                 "level": 2,
                 "requirements": ["Needle_shot", "Zio"],
                 "effect": "30 damage 20 % crit single-target x 1 - 2"
             },
             "Rapid_needle": {
                 "type": "strength pierce",
-                "hp_cost": 10,
+                "hp_cost": 8,
                 "level": 2,
                 "requirements": ["Needle_shot"],
                 "effect": "15 damage 15 % crit random-target x 1 - 3"
@@ -230,19 +230,19 @@
                 "type": "magic light",
                 "mp_cost": 12,
                 "level": 2,
-                "requirements": [["Agilao", "Bufula", "Zionga", "Zanma"], ["Frostburn", "Wind_cutter"]],
+                "requirements": [["Agilao", "Bufula"], ["Maragi, Mabufu"], "Frostburn"],
                 "effect": "45 damage"
             },
             "Mudo": {
                 "type": "magic dark",
                 "mp_cost": 12,
                 "level": 2,
-                "requirements": [["Maragi", "Mabufu", "Mazio", "Mazan"], ["Frostburn", "Wind_cutter"]],
+                "requirements": [["Zionga, Zanma"], ["Mazio", "Mazan"], "Wind_cutter"],
                 "effect": "45 damage"
             },
             "Diarama": {
                 "type": "heal",
-                "use_cost": 6,
+                "mp_cost": 6,
                 "level": 2,
                 "requirements": ["Dia"],
                 "effect": "90 hp"
@@ -250,142 +250,514 @@
             "Life_gain": {
                 "type": "passive",
                 "level": 3,
-                "requirements": ["Life_bonus", ["Rakukaja", "Diarama"]],
-                "effect": "20 % max_hp"
+                "requirements": ["Life_bonus", ["Assault_dive", "Berserk", "Shock_needle", "Rapid_needle"]],
+                "effect": "25 % max_hp"
+            },
+            "Life_lift": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Life_aid", "Diarama"],
+                "effect": "50 % max_hp recovery"
             },
             "Mana_gain": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Mana_bonus", "Makakaja", ["Maragi", "Mabufu", "Mazio", "Mazan"]],
-                "effect": "20 % max_mp"
+                "effect": "25 % max_mp"
+            },
+            "Mana_lift": {
+                "type": "passive",
+                "level": 3,
+                "requirements": ["Mana_aid", "Diarama", ["Agilao", "Bufula", "Zionga", "Zanma"]],
+                "effect": "50 % max_mp recovery"
             },
             "Phys_boost": {
                 "type": "passive",
                 "level": 3,
-                "requirements": ["Assault_dive", "Berserk"],
-                "effect": "phys x 1.2"
+                "requirements": ["Assault_dive", ["Berserk", "Rapid_needle"]],
+                "effect": "strength damage x 1.25"
             },
             "Fire_boost": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Agilao", "Maragi"],
-                "effect": "fire x 1.2"
+                "effect": "fire damage x 1.25"
             },
             "Ice_boost": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Bufula", "Mabufu"],
-                "effect": "ice x 1.2"
+                "effect": "ice damage x 1.2 freeze_chance + 10 %"
             },
             "Elec_boost": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Zionga", "Mazio"],
-                "effect": "elec x 1.2"
+                "effect": "elec damage x 1.2 shock_chance + 10 %"
             },
             "Wind_boost": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Zanma", "Mazan"],
-                "effect": "wind x 1.2"
+                "effect": "wind damage x 1.25"
             },
             "Heal_boost": {
                 "type": "passive",
                 "level": 3,
                 "requirements": ["Diarama", "Life_gain"],
-                "effect": "heal x 1.5"
+                "effect": "heal recovery x 1.5"
             },
             "Tarunda": {
                 "type": "debuff attack",
-                "use_cost": 8,
-                "duration": 3,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Rakukaja", ["Diarama", "Life_gain", "Life_aid"]],
                 "effect": "0.66 attack"
             },
             "Rakunda": {
                 "type": "debuff defense",
-                "use_cost": 8,
-                "duration": 3,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Rapid_needle", "Agilao", "Bufula", "Zionga", "Zanma"]],
                 "effect": "0.66 defense"
             },
+            "Megaton Press": {
+                "type": "strength phys",
+                "hp_cost": 10,
+                "level": 3,
+                "requirements": ["Berserk", ["Crit_boost", "Shock_needle"], "Rakunda"],
+                "effect": "55 damage 10 % crit"
+            },
+            "Rampage": {
+                "type": "strength phys",
+                "hp_cost": 15,
+                "level": 3,
+                "requirements": [["Assault_dive", "Berserk"], ["Shock_needle", "Rapid_needle"], ["Wind_cutter", "Icicle_shot"]],
+                "effect": "25 damage 10 % crit all x 2 - 3"
+            },
+            "Scald": {
+                "type": "strength fire",
+                "hp_cost": 13,
+                "level": 3,
+                "requirements": ["Maragi", "Berserk", "Rakunda"],
+                "effect": "50 damage 15 % crit all debuff defense 0.66"
+            },
+            "Blast_arrow": {
+                "type": "strength pierce",
+                "hp_cost": 12,
+                "level": 3,
+                "requirements": ["Rapid_needle", "Crit_boost", "Rakunda"],
+                "effect": "45 damage 20 % crit all"
+            },
+            "Icicle_shot": {
+                "type": "strength ice",
+                "hp_cost": 14,
+                "level": 3,
+                "requirements": [["Bufula", "Mabufu"], ["Rapid_needle", "Shock_needle"], "Tarunda"],
+                "effect": "45 damage 20 % crit single-target debuff attack 0.66"
+            },
             "Fire_breath": {
                 "type": "magic fire",
-                "use_cost": 12,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Maragi", "Makakaja"],
                 "effect": "20 damage random-target x 1 - 3"
             },
             "Ice_breath": {
                 "type": "magic ice",
-                "use_cost": 12,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Mabufu", "Makakaja"],
                 "effect": "20 damage random-target x 1 - 3"
             },
+            "Blizzard": {
+                "type": "magic ice",
+                "mp_cost": 18,
+                "level": 3,
+                "requirements": ["Mabufu", "Mazan", "Freeze_boost"],
+                "effect": "45 damage all + 15 damage against frozen"
+            },
             "Shockbound": {
                 "type": "magic elec",
-                "use_cost": 12,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Mazio", "Makakaja"],
                 "effect": "20 damage random-target x 1 - 3"
             },
+            "Tempest": {
+                "type": "magic elec",
+                "mp_cost": 18,
+                "level": 3,
+                "requirements": ["Mazan", "Mazio", "Shock_boost"],
+                "effect": "45 damage all + 15 damage against shocked"
+            },
             "Wind_breath": {
                 "type": "magic wind",
-                "use_cost": 12,
+                "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Mazan", "Makakaja"],
                 "effect": "20 damage random-target x 1 - 3"
             },
+            "Megido": {
+                "type": "magic non-elemental",
+                "mp_cost": 20,
+                "level": 3,
+                "requirements": ["Hama", "Mudo", ["Frostburn", "Tempest"], ["Fire_breath", "Ice_breath", "Shockbound", "Wind_breath"]],
+                "effect": "60 damage all"
+            },
             "Recarm": {
                 "type": "heal",
-                "use_cost": 8,
+                "mp_cost": 8,
                 "duration": 3,
                 "level": 3,
-                "requirements": ["Diarama", "Makakaja"],
+                "requirements": ["Diarama", "Hama"],
                 "effect": "40 hp every turn"
-            },
-            "Mana_surge": {
-                "type": "passive",
-                "use_cost": null,
-                "cost": 45,
-                "level": 5,
-                "requirements": ["Sukukajaon", "Mana_gain"],
-                "effect": "+ 1.5 luck"
-            },
-            "Trisagion": {
-                "type": "attack",
-                "use_cost": 18,
-                "cost": 65,
-                "level": 6,
-                "requirements": ["Agidyne", "Tarukajaon"],
-                "effect": "40 damage"
-            },
-            "Diarahan": {
-                "type": "heal",
-                "use_cost": 12,
-                "cost": 60,
-                "level": 2,
-                "requirements": ["Diarama", "Mana_surge"],
-                "effect": "999 hp"
             },
             "Life_surge": {
                 "type": "passive",
-                "use_cost": null,
-                "cost": 60,
-                "level": 6,
-                "requirements": ["Life_gain", "Rakukajaon"],
-                "effect": "+ 45 max_hp"
+                "level": 4,
+                "requirements": ["Life_gain", "Life_lift", ["Megaton_press", "Blast_arrow", "Scald", "Icicle_shot"]],
+                "effect": "40 % max_hp"
             },
-            "Luster_candy": {
-                "type": "buff",
-                "use_cost": 20,
-                "cost": 75,
-                "level": 6,
-                "requirements": ["Rakukajaon", "Sukukajaon", "Tarukajaon"],
-                "effect": "0.75 strength defense"
+            "Mana_surge": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Mana_gain", "Mana_lift", ["Hama", "Mudo"]],
+                "effect": "40 % max_mp"
+            },
+            "Phys_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Phys_boost", "Rampage"],
+                "effect": "strength damage x 1.5"
+            },
+            "Fire_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Fire_boost", "Firebreath"],
+                "effect": "fire damage x 1.5"
+            },
+            "Ice_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Ice_boost", ["Ice_breath", "Blizzard"]],
+                "effect": "ice damage x 1.5"
+            },
+            "Elec_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Elec_boost", ["Shockbound", "Tempest"]],
+                "effect": "elec damage x 1.5"
+            },
+            "Wind_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Wind_boost", ["Wind_breath", "Tempest"]],
+                "effect": "wind damage x 1.5"
+            },
+            "Light_boost": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Hama", ["Fire_boost", "Ice_boost", "Elec_boost", "Wind_boost"]],
+                "effect": "light damage x 1.25"
+            },
+            "Dark_boost": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Mudo", ["Fire_boost", "Ice_boost", "Elec_boost", "Wind_boost"]],
+                "effect": "dark damage x 1.25"
+            },
+            "Heal_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Heal_boost", "Recarm", "Life_surge"],
+                "effect": "heal recovery x 2 heal skills buff defense 1.25"
+            },
+            "Daze_boost": {
+                "type": "passive",
+                "level": 4,
+                "requirements": [["Megaton_press", "Rampage", "Blast_arrow"]],
+                "effect": "daze_chance 10 %"
+            },
+            "Ailment_boost": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Freeze_boost", "Shock_boost", ["Frostburn", "Blizzard", "Tempest", "Shock_shot", "Icicle_shot"]],
+                "effect": "ailment_chance + 10 %"
+            },
+            "Crit_amp": {
+                "type": "passive",
+                "level": 4,
+                "requirements": ["Blast_arrow", "Rampage"],
+                "effect": "crit_chance + 50 %"
+            },
+            "Charge": {
+                "type": "buff phys",
+                "level": 4,
+                "requirements": ["Tarukaja", "Rakunda", ["Rampage", "Scald", "Icicle_shot"]],
+                "effect": "1.5 phys attack"
+            },
+            "Concentrate": {
+                "type": "buff magic",
+                "level": 4,
+                "requirements": ["Makakaja", "Rakunda", ["Blizzard", "Tempest", "Megido"]],
+                "effect": "1.5 magic attack"
+            },
+            "Fortify": {
+                "type": "buff defense",
+                "level": 4,
+                "requirements": ["Rakukaja", "Tarunda", ["Recarm", "Life_gain", "Mana_gain"]],
+                "effect": "1.5 defense"
+            },
+            "Critical_slash": {
+                "type": "strength phys",
+                "hp_cost": 15,
+                "level": 4,
+                "requirements": ["Crit_amp", ["Megaton_press", "Scald", "Icicle_shot"]],
+                "effect": "40 damage 50 % crit single-target + 20 damage against dazed"
+            },
+            "Divine_shot": {
+                "type": "strength light",
+                "hp_cost": 20,
+                "level": 4,
+                "requirements": ["Hama", ["Megaton_press", "Rampage", "Scald"]],
+                "effect": "75 damage 15 % crit"
+            },
+            "Blight": {
+                "type": "strength phys",
+                "hp_cost": 22,
+                "level": 4,
+                "requirements": [["Rampage", "Blast_arrow"], "Phys_amp"],
+                "effect": "65 damage 10 % crit all"
+            },
+            "Tathlum_shot": {
+                "type": "strength pierce",
+                "hp_cost": 18,
+                "level": 4,
+                "requirements": [["Icicle_shot", "Blast_arrow"], "Crit_amp"],
+                "effect": "60 damage 20 % crit"
+            },
+            "Deathbound": {
+                "type": "strength dark",
+                "hp_cost": 23,
+                "level": 4,
+                "requirements": ["Mudo", ["Icicle_shot", "Blast_arrow"]],
+                "effect": "60 damage 25 % crit all"
+            },
+            "Agidyne": {
+                "type": "magic fire",
+                "mp_cost": 18,
+                "level": 4,
+                "requirements": ["Fire_breath", "Frostburn"],
+                "effect": "75 damage"
+            },
+            "Maragion": {
+                "type": "magic fire",
+                "mp_cost": 22,
+                "level": 4,
+                "requirements": ["Maragi", "Mana_surge"],
+                "effect": "50 damage all"
+            },
+            "Bufudyne": {
+                "type": "magic ice",
+                "mp_cost": 20,
+                "level": 4,
+                "requirements": ["Ice_breath", "Blizzard"],
+                "effect": "60 damage"
+            },
+            "Mabufula": {
+                "type": "magic ice",
+                "mp_cost": 24,
+                "level": 4,
+                "requirements": ["Mabufu", "Mana_surge"],
+                "effect": "45 damage all"
+            },
+            "Ziodyne": {
+                "type": "magic elec",
+                "mp_cost": 20,
+                "level": 4,
+                "requirements": ["Shockbound", "Tempest"],
+                "effect": "60 damage"
+            },
+            "Mazionga": {
+                "type": "magic elec",
+                "mp_cost": 24,
+                "level": 4,
+                "requirements": ["Mazio", "Mana_surge"],
+                "effect": "45 damage all"
+            },
+            "Zandyne": {
+                "type": "magic wind",
+                "mp_cost": 18,
+                "level": 4,
+                "requirements": ["Wind_breath", "Tempest"],
+                "effect": "75 damage"
+            },
+            "Mazanma": {
+                "type": "magic wind",
+                "mp_cost": 22,
+                "level": 4,
+                "requirements": ["Mazan", "Mana_surge"],
+                "effect": "50 damage all"
+            },
+            "Mahama": {
+                "type": "magic light",
+                "mp_cost": 25,
+                "level": 4,
+                "requirements": ["Hama", "Hama_boost", "Mana_gain"],
+                "effect": "55 damage all"
+            },
+            "Mamudo": {
+                "type": "magic dark",
+                "mp_cost": 25,
+                "level": 4,
+                "requirements": ["Mudo", "Mudo_boost", "Mana_gain"],
+                "effect": "55 damage all"
+            },
+            "Diarahan": {
+                "type": "heal",
+                "mp_cost": 12,
+                "level": 4,
+                "requirements": ["Diarama", "Fortify"],
+                "effect": "999 hp"
+            },
+            "Samarecarm": {
+                "type": "heal",
+                "mp_cost": 15,
+                "duration": 3,
+                "level": 4,
+                "requirements": ["Recarm", "Fortify"],
+                "effect": "75 hp every turn"
+            },
+            "Null_phys": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Phys_amp", ["Divine_shot", "Blight"]],
+                "effect": "phys affinity null"
+            },
+            "Null_pierce": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Phys_amp", ["Tathlum_shot", "Deathbound"]],
+                "effect": "pierce affinity null"
+            },
+            "Null_fire": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Fire_amp", ["Agidyne", "Maragion"]],
+                "effect": "fire affinity null"
+            },
+            "Null_ice": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Ice_amp", ["Bufudyne", "Mabufula"]],
+                "effect": "ice affinity null"
+            },
+            "Null_elec": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Elec_amp", ["Ziodyne", "Mazionga"]],
+                "effect": "elec affinity null"
+            },
+            "Null_wind": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Wind_amp", ["Zandyne", "Mazanma"]],
+                "effect": "wind affinity null"
+            },
+            "Apt_pupil": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Crit_amp", ["Divine_shot", "Blight", "Deathbound"]],
+                "effect": "crit damage x 1.5 hp_cost x 0.75"
+            },
+            "Magic_mastery": {
+                "type": "passive",
+                "level": 5,
+                "requirements": ["Megido", ["Agidyne", "Bufudyne", "Ziodyne", "Zandyne"], ["Maragion", "Mabufula", "Mazionga", "Mazanma"]],
+                "effect": "magic damage x 1.5 mp_cost x 0.75"
+            },
+            "War_cry": {
+                "type": "debuff attack",
+                "level": 5,
+                "requirements": ["Fortify", "Diarahan", "Heal_amp"],
+                "effect": "0.33 attack"
+            },
+            "Acid_breath": {
+                "type": "debuff defense",
+                "level": 5,
+                "requirements": ["Charge", "Concentrate", ["Divine_shot", "Tathlum_shot", "Agidyne", "Bufudyne", "Ziodyne", "Zandyne"]],
+                "effect": "0.33 attack"
+            },
+            "Freikugel": {
+                "type": "strength non-elemental",
+                "hp_cost": 33,
+                "level": 5,
+                "requirements": ["Apt_pupil", ["Divine_shot", "Blight", "Deathbound"]],
+                "effect": "100 damage 15 % crit"
+            },
+            "Laevateinn": {
+                "type": "strength fire",
+                "hp_cost": 30,
+                "level": 5,
+                "requirements": [["Agidyne", "Maragion"], ["Critical_slash", "Deathbound"]],
+                "effect": "80 damage 45 % crit"
+            },
+            "Hades_blast": {
+                "type": "strength phys",
+                "hp_cost": 35,
+                "level": 5,
+                "requirements": ["Blight", "Phys_amp"],
+                "effect": "80 damage 25 % crit all"
+            },
+            "Riot_gun": {
+                "type": "strength pierce",
+                "hp_cost": 30,
+                "level": 5,
+                "requirements": ["Tathlum_shot", "Apt_pupil"],
+                "effect": "85 damage 35 % crit"
+            },
+            "Heaven's_bow": {
+                "type": "strength light",
+                "hp_cost": 35,
+                "level": 5,
+                "requirements": ["Divine_shot", "Deathbound", "Tathlum_shot"],
+                "effect": "80 damage 30 % crit all"
+            },
+            "Inferno": {
+                "type": "magic fire",
+                "mp_cost": 40,
+                "level": 5,
+                "requirements": ["Agidyne", "Maragion", "Mazanma"],
+                "effect": "80 damage all"
+            },
+            "Ice_age": {
+                "type": "magic ice",
+                "mp_cost": 44,
+                "level": 5,
+                "requirements": ["Bufudyne", "Mabufula", "Maragion"],
+                "effect": "75 damage all"
+            },
+            "Jupiter's_fury": {
+                "type": "magic elec",
+                "mp_cost": 44,
+                "level": 5,
+                "requirements": ["Ziodyne", "Mazionga", "Mabufula"],
+                "effect": "75 damage all"
+            },
+            "Killing_wind": {
+                "type": "magic wind",
+                "mp_cost": 40,
+                "level": 5,
+                "requirements": ["Zandyne", "Mazanma", "Mazionga"],
+                "effect": "80 damage all"
+            },
+            "Megidolaon": {
+                "type": "magic non-elemental",
+                "mp_cost": 50,
+                "level": 5,
+                "requirements": ["Agidyne", "Bufudyne", "Ziodyne", "Zandyne"],
+                "effect": "100 damage all"
             }
         },
         "enemies": [
