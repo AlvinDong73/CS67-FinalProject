@@ -759,110 +759,148 @@
                 "effect": "100 damage all"
             }
         },
-        "enemies": [
-            {
-                "name": "Anomaly",
-                "hp": 30,
-                "attack": 10,
-                "speed": 5,
-                "xp": 20,
-                "mana": 5,
-                "ai": {
-                    "type": "attack",
-                    "target": "random"
-                },
+        "enemies": {
+            "Pixie": {
+                "max_hp": 20,
+                "strength": 1,
+                "magic": 4,
+                "vitality": 2,
+                "agility": 4,
+                "money": 10,
+                "skills": ["Attack", "Zio", "Dia"],
                 "affinities": {
-                    "light": "str"
-                }
+                    "phys": "neutral",
+                    "pierce": "neutral",
+                    "fire": "neutral",
+                    "ice": "neutral",
+                    "elec": "resist",
+                    "wind": "weak",
+                    "light": "neutral",
+                    "dark": "neutral"
+                },
+                "drops": ["Medicine", "Zio_stone"]
             },
-            {
-                "name": "Skeleton",
-                "hp": 15,
-                "attack": 6,
-                "speed": 15,
-                "xp": 15,
-                "mana": 3,
-                "ai": {
-                    "type": "first_turn",
-                    "choices": [
-                        {
-                            "type": "strength 2",
-                            "target": "self"
-                        },
-                        {
-                            "type": "attack",
-                            "target": "hero"
-                        }
-                    ]
-                },
+            "Slime": {
+                "max_hp": 45,
+                "strength": 2,
+                "magic": 1,
+                "vitality": 4,
+                "agility": 1,
+                "money": 15,
+                "skills": ["Attack", "Lunge"],
                 "affinities": {
-                    "lightning": "wk",
-                    "ice": "str",
-                    "fire": "str"
-                }
+                    "phys": "neutral",
+                    "pierce": "neutral",
+                    "fire": "weak",
+                    "ice": "weak",
+                    "elec": "weak",
+                    "wind": "weak",
+                    "light": "weak",
+                    "dark": "neutral"
+                },
+                "drops": []
             },
-            {
-                "name": "Kobold",
-                "hp": 10,
-                "attack": 6,
-                "speed": 15,
-                "xp": 10,
-                "mana": 3,
-                "ai": {
-                    "type": "low_hp",
-                    "choices": [
-                        {
-                            "type": "random",
-                            "choices": [
-                                {
-                                    "type": "attack",
-                                    "target": "lowest_hp"
-                                },
-                                {
-                                    "type": "defend",
-                                    "target": "self"
-                                }
-                            ]
-                        },
-                        {
-                            "type": "attack",
-                            "target": "lowest_hp"
-                        }
-                    ]
-                },
+            "Onmoraki": {
+                "max_hp": 30,
+                "strength": 2,
+                "magic": 3,
+                "vitality": 2,
+                "agility": 5,
+                "money": 15,
+                "skills": ["Attack", "Agi"],
                 "affinities": {
-                    "wind": "str"
-                }
+                    "phys": "neutral",
+                    "pierce": "neutral",
+                    "fire": "resist",
+                    "ice": "weak",
+                    "elec": "neutral",
+                    "wind": "neutral",
+                    "light": "neutral",
+                    "dark": "neutral"
+                },
+                "drops": ["Medicine", "Chakra_drop"]
             },
-            {
-                "name": "Wight",
-                "hp": 20,
-                "attack": 8,
-                "speed": 3,
-                "xp": 20,
-                "mana": 4,
-                "ai": {
-                    "type": "random",
-                    "choices": [
-                        {
-                            "type": "strength 2",
-                            "target": "self"
-                        },
-                        {
-                            "type": "attack",
-                            "target": "random"
-                        },
-                        {
-                            "type": "defend",
-                            "target": "self"
-                        }
-                    ]
-                },
+            "Mandrake": {
+                "max_hp": 35,
+                "strength": 3,
+                "magic": 2,
+                "vitality": 2,
+                "agility": 3,
+                "money": 15,
+                "skills": ["Attack", "Needle_shot"],
                 "affinities": {
-                    "dark": "str"
-                }
+                    "phys": "neutral",
+                    "pierce": "neutral",
+                    "fire": "weak",
+                    "ice": "neutral",
+                    "elec": "resist",
+                    "wind": "neutral",
+                    "light": "neutral",
+                    "dark": "neutral"
+                },
+                "drops": ["Medicine", "Needle_orb"]
+            },
+            "Preta": {
+                "max_hp": 40,
+                "strength": 4,
+                "magic": 2,
+                "vitality": 3,
+                "agility": 2,
+                "money": 20,
+                "skills": ["Attack", "Lunge", "Bufu"],
+                "affinities": {
+                    "phys": "neutral",
+                    "pierce": "neutral",
+                    "fire": "weak",
+                    "ice": "resist",
+                    "elec": "neutral",
+                    "wind": "weak",
+                    "light": "neutral",
+                    "dark": "neutral"
+                },
+                "drops": ["Medicine", "Zio_stone"]
+            },
+            "Angel": {
+                "max_hp": 35,
+                "strength": 1,
+                "magic": 5,
+                "vitality": 2,
+                "agility": 4,
+                "money": 25,
+                "skills": ["Attack", "Zan", "Hama", "Dia"],
+                "affinities": {
+                    "phys": "neutral",
+                    "pierce": "weak",
+                    "fire": "neutral",
+                    "ice": "neutral",
+                    "elec": "neutral",
+                    "wind": "neutral",
+                    "light": "null",
+                    "dark": "weak"
+                },
+                "drops": ["Medicine", "Chakra_drop", "Hama_stone"]
+            },
+            "Specter": {
+                "max_hp": 30,
+                "strength": 1,
+                "magic": 1,
+                "vitality": 1,
+                "agility": 6,
+                "money": 15,
+                "skills": ["Attack", "Mudo"],
+                "affinities": {
+                    "phys": "resist",
+                    "pierce": "neutral",
+                    "fire": "neutral",
+                    "ice": "neutral",
+                    "elec": "weak",
+                    "wind": "neutral",
+                    "light": "weak",
+                    "dark": "resist"
+                },
+                "drops": ["Medicine", "Mudo_stone"]
             }
-        ],
+        },
         "locations": {
             "Forest": {
                 "description": "Dark, and old. No light seeps through the treetops.",
