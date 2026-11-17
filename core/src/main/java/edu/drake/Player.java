@@ -1,13 +1,16 @@
 package edu.drake;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.HashSet;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Player extends Entity {
     private int mp;
     private int max_mp;
-    private int money;
+    private HashMap<String, Integer> inventory;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
     
@@ -28,18 +31,28 @@ public class Player extends Entity {
             this.vitality = baseStats.get("vitality").asInt();
             this.agility = baseStats.get("agility").asInt();
             this.money = baseStats.get("money").asInt();
+            this.skills = new HashSet<String>();
+            this.inventory = new HashMap<String, Integer>();
+
+            this.affinities = new HashMap<String, String>();
+            this.affinities.put("phys", "neutral");
+            this.affinities.put("pierce", "neutral");
+            this.affinities.put("fire", "neutral");
+            this.affinities.put("ice", "neutral");
+            this.affinities.put("elec", "neutral");
+            this.affinities.put("wind", "neutral");
+            this.affinities.put("light", "null");
+            this.affinities.put("dark", "neutral");
+
+            this.status_effects = new HashMap<String, Float>();
+            this.status_effects.put("phys_attack", null);
+            this.status_effects.put("magic_attack", null);
+            this.status_effects.put("defense", null);
+            this.status_effects.put("ailment", null);
 
         } catch (IOException e) {
             throw new IllegalStateException("Could not read /edu/drake/game_data.json", e);
         }
-    }
-
-    public int getHp() {
-        return this.hp;
-    }
-
-    public int getMaxHp() {
-        return this.max_hp;
     }
 
     public int getMp() {
@@ -50,25 +63,13 @@ public class Player extends Entity {
         return this.max_mp;
     }
 
-    public int getStrength() {
-        return this.strength;
-    }
-
     public void increaseStrength() {
         this.strength++;
-    }
-
-    public int getMagic() {
-        return this.magic;
     }
 
     public void increaseMagic() {
         this.magic++;
         this.max_mp += 5;
-    } 
-
-    public int getVitality() {
-        return this.vitality;
     }
 
     public void increaseVitality() {
@@ -76,19 +77,36 @@ public class Player extends Entity {
         this.max_hp += 10;
     }
 
-    public int getAgility() {
-        return this.agility;
-    }
-
     public void increaseAgility() {
         this.agility++;
     }
 
-    public int getMoney() {
-        return this.money;
-    }
-
     public void increaseMoney(int amount) {
         this.money += amount;
+    }
+
+    public String getInventory() {
+        if (this.inventory.isEmpty()) {
+            return "Inventory is empty.";
+        }
+
+        String returnString = "";
+        for (String item : this.inventory.keySet()) {
+            returnString += '\n' + item + ": " + this.inventory.get(item);
+        }
+
+        return returnString;
+    }
+
+    public void addItem(String item) {
+        if (this.inventory.containsKey(item)) {
+            this.inventory.replace(item, this.inventory.get(item) + 1);
+        } else {
+            this.inventory.put(item, 1);
+        }
+    }
+
+    public void setAffinity(String element, String resistance) {
+        this.affinities.replace(element, resistance);
     }
 }
