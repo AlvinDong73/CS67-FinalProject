@@ -19,7 +19,7 @@ public abstract class BaseScreen implements Screen {
 
     public BaseScreen(Main game) {
         this.game = game;
-        stage = new Stage(new ScreenViewport(game.getCamera()));
+        stage = new Stage(new ScreenViewport(game.getCamera()), game.getBatch());
         initializeInput();
     }
 
