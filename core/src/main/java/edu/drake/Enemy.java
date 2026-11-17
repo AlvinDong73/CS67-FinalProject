@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.ArrayList;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,7 +30,7 @@ public class Enemy extends Entity {
             this.agility = enemyData.get("agility").asInt();
             this.money = enemyData.get("money").asInt();
 
-            this.skills = new HashSet<String>();
+            this.skills = new ArrayList<String>();
             for (JsonNode skillName : enemyData.path("skills")) {
                 this.skills.add(skillName.asText());
             }
@@ -49,15 +50,20 @@ public class Enemy extends Entity {
                 this.drops.add(drop.asText());
             }
 
-            this.status_effects = new HashMap<String, Float>();
-            this.status_effects.put("phys_attack", null);
-            this.status_effects.put("magic_attack", null);
-            this.status_effects.put("defense", null);
+            this.status_effects = new HashMap<String, Double>();
+            this.status_effects.put("phys_attack", 1.0);
+            this.status_effects.put("magic_attack", 1.0);
+            this.status_effects.put("defense", 1.0);
             this.status_effects.put("ailment", null);
+            this.status_effects.put("heal_over_time", null);
 
         } catch (IOException e) {
             throw new IllegalStateException("Could not read /edu/drake/game_data.json", e);
         }
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public HashSet<String> getDrops() {

@@ -3,7 +3,8 @@ package edu.drake;
 public class test {
     public static void main(String[] args) {
         Player test = new Player();
-        Enemy testEnemy = new Enemy("Slime");
+        Enemy testEnemy = new Enemy("Pixie");
+        Skill testSkill = new Skill("Mana_bonus");
 
         // Player stats
         System.out.printf("\nHP: %d", test.getHp());
@@ -25,16 +26,21 @@ public class test {
         System.out.println("\nAffinities before:" + test.getAffinities());
         test.setAffinity("phys", "resist");
         System.out. println("\nAffinities after:" + test.getAffinities());
-        System.out.println(test.checkResistance("phys"));
+        System.out.println("Phys resistance: " + test.checkResistance("phys"));
 
         // Inventory
         System.out.println("Inventory before: " + test.getInventory());
         test.addItem("Bead");
         System.out.println("Inventory after: " + test.getInventory());
 
+        // Player toString
+        System.out.println(test);
+
         // Enemy stats
-        System.out.printf("\nHP: %d", testEnemy.getHp());
-        System.out.printf("\nStrength: %d", testEnemy.getStrength());
+        System.out.println();
+        System.out.println("Enemy: " + testEnemy.getName());
+        System.out.printf("HP: %d\n", testEnemy.getHp());
+        System.out.printf("Strength: %d", testEnemy.getStrength());
 
         // Enemy skills
         System.out.println("Skills: " + testEnemy.getSkills());
@@ -46,5 +52,19 @@ public class test {
 
         // Enemy toString
         System.out.println(testEnemy);
+
+        // Skill data
+        System.out.println();
+        System.out.println("Skill: " + testSkill.getName());
+        System.out.println("Type: " + testSkill.getType());
+        System.out.println("Effect: " + testSkill.getEffect());
+        System.out.printf("Cost: %d\n", testSkill.getCost());
+        System.out.println("Target: " + testSkill.getTarget());
+        System.out.println("Min hits: " + testSkill.getMinHits() + "; Max hits: " + testSkill.getMaxHits());
+        System.out.println("Additional effect: " + testSkill.getAddEffect() + " when " + testSkill.getAddEffectCondition());
+
+        // canLearn
+        System.out.println("Learned skills: " + testEnemy.getSkills());
+        System.out.println("Can learn: " + testSkill.canLearn(testEnemy.getSkills()));
     }
 }

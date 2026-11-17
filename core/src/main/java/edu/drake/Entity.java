@@ -1,6 +1,6 @@
 package edu.drake;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.ArrayList;
 
 public abstract class Entity {
     protected int hp;
@@ -10,9 +10,9 @@ public abstract class Entity {
     protected int vitality;
     protected int agility;
     protected int money;
-    protected HashSet<String> skills;
+    protected ArrayList<String> skills;
     protected HashMap<String, String> affinities;
-    protected HashMap<String, Float> status_effects;
+    protected HashMap<String, Double> status_effects;
 
     public int getHp() {
         return this.hp;
@@ -42,7 +42,7 @@ public abstract class Entity {
         return this.money;
     }
 
-    public HashSet<String> getSkills() {
+    public ArrayList<String> getSkills() {
         return this.skills;
     }
 

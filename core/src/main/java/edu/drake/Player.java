@@ -1,8 +1,8 @@
 package edu.drake;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,6 +10,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Player extends Entity {
     private int mp;
     private int max_mp;
+    private int level;
+    private int room;
     private HashMap<String, Integer> inventory;
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
@@ -31,7 +33,7 @@ public class Player extends Entity {
             this.vitality = baseStats.get("vitality").asInt();
             this.agility = baseStats.get("agility").asInt();
             this.money = baseStats.get("money").asInt();
-            this.skills = new HashSet<String>();
+            this.skills = new ArrayList<String>();
             this.inventory = new HashMap<String, Integer>();
 
             this.affinities = new HashMap<String, String>();
@@ -44,11 +46,12 @@ public class Player extends Entity {
             this.affinities.put("light", "null");
             this.affinities.put("dark", "neutral");
 
-            this.status_effects = new HashMap<String, Float>();
-            this.status_effects.put("phys_attack", null);
-            this.status_effects.put("magic_attack", null);
-            this.status_effects.put("defense", null);
+            this.status_effects = new HashMap<String, Double>();
+            this.status_effects.put("phys_attack", 1.0);
+            this.status_effects.put("magic_attack", 1.0);
+            this.status_effects.put("defense", 1.0);
             this.status_effects.put("ailment", null);
+            this.status_effects.put("heal_over_time", null);
 
         } catch (IOException e) {
             throw new IllegalStateException("Could not read /edu/drake/game_data.json", e);
@@ -108,5 +111,20 @@ public class Player extends Entity {
 
     public void setAffinity(String element, String resistance) {
         this.affinities.replace(element, resistance);
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getRoom() {
+        return room;
+    }
+
+    public String toString() {
+        return
+            this.hp + "/" + this.max_hp + "HP" + " " + this.mp + "/" + this.max_mp + "MP" + '\n' +
+            "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
+            this.getAffinities();
     }
 }
