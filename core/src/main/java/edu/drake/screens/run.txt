@@ -1,0 +1,13 @@
+Shop guaranteed to spawn before boss of the current layer
+Exactly 1 shop may spawn randomly before the guaranteed shop
+Chance of seeing Elite encounters with better skills
+Treasure rooms may occasionally spawn
+
+Screens needed:
+
+Combat screens
+    In and post combat
+Shop screen
+Win/loss screens
+
+ICON CURRENT_HP / MAX_HP CURRENT MP / MAX_MP MONEY          DETAILED STATS PAUSE MENU
