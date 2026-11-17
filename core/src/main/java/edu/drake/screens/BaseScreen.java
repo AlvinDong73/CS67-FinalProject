@@ -1,9 +1,28 @@
-package edu.drake;
+package edu.drake.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-/** First screen of the application. Displayed after the application is created. */
-public class FirstScreen implements Screen {
+import edu.drake.Main;
+
+public abstract class BaseScreen implements Screen {
+    protected Main game;
+    protected Stage stage;
+
+    public void initializeInput() {
+        Gdx.input.setInputProcessor(stage);
+    }
+
+    public BaseScreen(Main game) {
+        this.game = game;
+        stage = new Stage(new ScreenViewport(game.getCamera()));
+        initializeInput();
+    }
+
     @Override
     public void show() {
         // Prepare your screen here.
@@ -11,16 +30,17 @@ public class FirstScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        // Draw your screen here. "delta" is the time since last render in seconds.
+        ScreenUtils.clear(Color.BLACK);
     }
 
     @Override
     public void resize(int width, int height) {
         // If the window is minimized on a desktop (LWJGL3) platform, width and height are 0, which causes problems.
         // In that case, we don't resize anything, and wait for the window to be a normal size before updating.
-        if(width <= 0 || height <= 0) return;
+        if (width <= 0 || height <= 0) return;
 
         // Resize your screen here. The parameters represent the new window size.
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
@@ -40,6 +60,6 @@ public class FirstScreen implements Screen {
 
     @Override
     public void dispose() {
-        // Destroy screen's assets here.
+        stage.dispose();
     }
 }
