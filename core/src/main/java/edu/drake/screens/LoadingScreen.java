@@ -109,4 +109,11 @@ public class LoadingScreen extends BaseScreen {
         renderer.end();
         game.getBatch().end();
     }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+        renderer.dispose();
+        font.dispose();
+    }
 }
