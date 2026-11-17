@@ -60,7 +60,7 @@ public class LoadingScreen extends BaseScreen {
         for (String path : FONT_PATHS) {
             FreeTypeFontLoaderParameter parameter = new FreeTypeFontLoaderParameter();
             parameter.fontFileName = "fonts/" + path;
-            parameter.fontParameters.size = 16;
+            parameter.fontParameters.size = 24;
             manager.load(path, BitmapFont.class, parameter);
             manager.finishLoadingAsset(path);
         }
