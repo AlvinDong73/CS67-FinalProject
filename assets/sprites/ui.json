@@ -19,7 +19,7 @@
     "fontDown": "gray",
     "fontChecked": "checkedOver",
     "fontCheckedOver": "checked",
-    "fontDisabled": "gray"
+    "fontDisabled": { "r": 0.4, "g": 0.4, "b": 0.4, "a": 1 }
   },
   "com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable": {
     "buttonUp": { "name": "base", "color": "up" },

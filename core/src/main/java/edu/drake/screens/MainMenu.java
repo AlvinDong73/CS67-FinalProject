@@ -30,14 +30,54 @@ public class MainMenu extends BaseScreen {
             .expand()
             .align(Align.center);
         root.row();
-        TextButton b = new TextButton("Quit Game", uiSkin);
-        b.addListener(new ChangeListener() {
+        Table menu = new Table();
+        TextButton play = new TextButton("Start New Run", uiSkin);
+        play.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: Transition into new run
+            }
+        });
+        TextButton continueRun = new TextButton("Continue Run", uiSkin);
+        continueRun.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: Transition into saved run
+            }
+        });
+        // TODO: Check if a preexisting run has been saved
+        continueRun.setDisabled(true);
+        TextButton settings = new TextButton("Settings", uiSkin);
+        settings.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                // TODO: Transition into settings menu
+            }
+        });
+        TextButton quit = new TextButton("Quit Game", uiSkin);
+        quit.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 Gdx.app.exit();
             }
         });
-        root.add(b)
+        menu.row();
+        menu.add(play)
+            .pad(10)
+            .minWidth(300);
+        menu.row();
+        menu.add(continueRun)
+            .pad(10)
+            .minWidth(300);
+        menu.row();
+        menu.add(settings)
+            .pad(10)
+            .minWidth(300);
+        menu.row();
+        menu.add(quit)
+            .pad(10)
+            .minWidth(300);
+        root.add(menu)
             .expand()
             .align(Align.center);
         stage.addActor(root);
