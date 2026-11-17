@@ -9,6 +9,14 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 import edu.drake.Main;
 
+/**
+ * An abstract class that reduces the boilerplate of implementing the Screen interface.
+ * A child class should call `super.render()` to clear the screen prior to rendering.
+ * If a child class needs to dispose of additional resources or resize other viewports,
+ * then the corresponding superclass method needs to be called when overriding those
+ * methods.
+ * Author: Alvin Dong
+ */
 public abstract class BaseScreen implements Screen {
     protected Main game;
     protected Stage stage;
