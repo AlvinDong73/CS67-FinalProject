@@ -1,12 +1,15 @@
 package edu.drake;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Locale;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Skill {
+public class Skill implements Serializable {
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private String name;
     private String type, subtype;
@@ -20,6 +23,9 @@ public class Skill {
     private String additionalEffect, additionalEffectCondition;
 
     public Skill (String skillName) {
+        skillName = skillName.substring(0, 1).toUpperCase(Locale.ROOT) + // capitalize name for testing
+            skillName.substring(1).toLowerCase(Locale.ROOT);
+
         try (InputStream input = Player.class.getResourceAsStream("/edu/drake/game_data.json")) {
             if (input == null) {
                 throw new IllegalStateException("Missing classpath resource: /edu/drake/game_data.json");
@@ -122,7 +128,7 @@ public class Skill {
                 case "buff":
                     this.cost = skillData.get("mp_cost").asInt();
 
-                    if (Integer.valueOf(this.effect[0]) > 1 | this.subtype.equals("recovery")) {
+                    if (Double.valueOf(this.effect[0]) > 1 | this.subtype.equals("recovery")) {
                         this.target = "self";
                     } else {
                         this.target = "all";
@@ -189,7 +195,7 @@ public class Skill {
 
     public boolean canLearn(ArrayList<String> skillsList) {
         boolean skillFound = false;
-        
+
         for (HashSet<String> mainRequirement : this.requirements) {
             for (String skill : mainRequirement) {
                 if (skillsList.contains(skill)) {
@@ -203,5 +209,23 @@ public class Skill {
             }
         }
         return true;
+    }
+
+    public void learnSkill(Player player) {
+        player.addSkill(this.name);
+
+        if (!this.type.equals("passive")) {
+            player.addActiveSkill(this.name);
+
+        } else if (this.subtype.equals("stat")) {
+            if (this.effect[0].equals("max_hp")) {
+                player.increaseMaxHP(Double.valueOf(this.effect[2])/100.0);
+            } else if (this.effect[0].equals("max_mp")) {
+                player.increaseMaxMP(Double.valueOf(this.effect[2])/100.0);
+            }
+
+        } else if (this.subtype.equals("affinity")) {
+            player.setAffinity(this.effect[0], this.effect[2]);
+        }
     }
 }

@@ -1,11 +1,14 @@
 package edu.drake;
 
+import java.util.ArrayList;
+
 public class test {
     public static void main(String[] args) {
-        Player test = new Player();
+        Player test = new Player("Anjemu");
         Enemy testEnemy = new Enemy("Pixie");
-        Skill testSkill = new Skill("Mana_bonus");
-
+        Skill testSkill = new Skill("mana_bonus");
+        ArrayList<Enemy> testEncounter = new ArrayList<Enemy>();
+/*
         // Player stats
         System.out.printf("\nHP: %d", test.getHp());
 
@@ -66,5 +69,30 @@ public class test {
         // canLearn
         System.out.println("Learned skills: " + testEnemy.getSkills());
         System.out.println("Can learn: " + testSkill.canLearn(testEnemy.getSkills()));
+
+        // Learning skills
+        System.out.printf("Max HP before: %d\n", test.getMaxHp());
+        Skill lifeBonus = new Skill("life_bonus");
+        lifeBonus.learnSkill(test);
+        System.out.printf("Max HP after life bonus: %d\n", test.getMaxHp());
+        test.increaseVitality();
+        System.out.printf("Max HP after vit increase: %d\n", test.getMaxHp());
+
+        System.out.println("Skills list before: " + test.getSkills());
+        System.out.println("Active skills list before: " + test.getActiveSkills());
+        Skill agi = new Skill("agi");
+        agi.learnSkill(test);
+        System.out.println("Skills list after: " + test.getSkills());
+        System.out.println("Active skills list after: " + test.getActiveSkills());
+
+        System.out.println("Affinities before: " + test.getAffinities());
+        Skill nullPhys = new Skill("null_phys");
+        nullPhys.learnSkill(test);
+        System.out.println("\nAffinities after: " + test.getAffinities());
+*/
+        // Combat
+        testEncounter.add(new Enemy("Pixie"));
+        testEncounter.add(new Enemy("Slime"));
+        Combat.startCombat(test, testEncounter);
     }
 }

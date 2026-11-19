@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Enemy extends Entity {
 
-    private String name;
     private HashSet<String> drops;
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
@@ -21,6 +20,7 @@ public class Enemy extends Entity {
             JsonNode rootNode = MAPPER.readTree(input);
             JsonNode enemyData = rootNode.get("assets").get("enemies").get(name);
 
+            this.type = "enemy";
             this.name = name;
             this.max_hp = enemyData.get("max_hp").asInt();
             this.hp = this.max_hp;
@@ -54,16 +54,15 @@ public class Enemy extends Entity {
             this.status_effects.put("phys_attack", 1.0);
             this.status_effects.put("magic_attack", 1.0);
             this.status_effects.put("defense", 1.0);
-            this.status_effects.put("ailment", null);
-            this.status_effects.put("heal_over_time", null);
+            this.status_effects.put("dazed", 0.0);
+            this.status_effects.put("frozen", 0.0);
+            this.status_effects.put("shocked", 0.0);
+            this.status_effects.put("heal_over_time", 0.0);
+            this.status_effects.put("guarding", 0.0);
 
         } catch (IOException e) {
             throw new IllegalStateException("Could not read /edu/drake/game_data.json", e);
         }
-    }
-
-    public String getName() {
-        return this.name;
     }
 
     public HashSet<String> getDrops() {

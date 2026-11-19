@@ -12,6 +12,13 @@
             "money": 0
         },
         "skills": {
+            "Attack": {
+                "type": "strength phys",
+                "hp_cost": 0,
+                "level": 0,
+                "requirements": [],
+                "effect": "10 damage 10 % crit"
+            },
             "Lunge": {
                 "type": "strength phys",
                 "hp_cost": 2,
@@ -19,7 +26,7 @@
                 "requirements": [],
                 "effect": "25 damage 10 % crit"
             },
-            "Needle Shot": {
+            "Needle_shot": {
                 "type": "strength pierce",
                 "hp_cost": 3,
                 "level": 1,
@@ -307,7 +314,7 @@
                 "type": "passive boost",
                 "level": 3,
                 "requirements": ["Diarama", "Life_gain"],
-                "effect": "1.5 x heal recovery"
+                "effect": "1.25 x heal recovery"
             },
             "Tarunda": {
                 "type": "buff attack",
@@ -323,7 +330,7 @@
                 "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Rapid_needle", "Agilao", "Bufula", "Zionga", "Zanma"]],
                 "effect": "0.66 defense"
             },
-            "Megaton Press": {
+            "Megaton_press": {
                 "type": "strength phys",
                 "hp_cost": 10,
                 "level": 3,
@@ -479,7 +486,7 @@
                 "type": "passive boost",
                 "level": 4,
                 "requirements": ["Heal_boost", "Recarm", "Life_surge"],
-                "effect": "2 x heal recovery + heal skills buff defense 1.25"
+                "effect": "1.5 x heal recovery + heal skills buff defense 1.25"
             },
             "Daze_boost": {
                 "type": "passive boost",

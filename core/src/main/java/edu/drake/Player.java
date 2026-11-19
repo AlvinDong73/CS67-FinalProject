@@ -8,15 +8,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Player extends Entity {
-    private int mp;
-    private int max_mp;
     private int level;
     private int room;
     private HashMap<String, Integer> inventory;
+    private ArrayList<String> activeSkills;
+
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
     
-    public Player() {
+    public Player(String name) {
         try (InputStream input = Player.class.getResourceAsStream("/edu/drake/game_data.json")) {
             if (input == null) {
                 throw new IllegalStateException("Missing classpath resource: /edu/drake/game_data.json");
@@ -24,6 +24,8 @@ public class Player extends Entity {
             JsonNode rootNode = MAPPER.readTree(input);
             JsonNode baseStats = rootNode.path("assets").path("base_stats");
 
+            this.type = "player";
+            this.name = name;
             this.hp = baseStats.get("hp").asInt();
             this.max_hp = baseStats.get("max_hp").asInt();
             this.mp = baseStats.get("mp").asInt();
@@ -34,6 +36,9 @@ public class Player extends Entity {
             this.agility = baseStats.get("agility").asInt();
             this.money = baseStats.get("money").asInt();
             this.skills = new ArrayList<String>();
+            this.skills.add("Attack");
+            this.activeSkills = new ArrayList<String>();
+            this.activeSkills.add("Attack");
             this.inventory = new HashMap<String, Integer>();
 
             this.affinities = new HashMap<String, String>();
@@ -50,8 +55,11 @@ public class Player extends Entity {
             this.status_effects.put("phys_attack", 1.0);
             this.status_effects.put("magic_attack", 1.0);
             this.status_effects.put("defense", 1.0);
-            this.status_effects.put("ailment", null);
-            this.status_effects.put("heal_over_time", null);
+            this.status_effects.put("dazed", 0.0);
+            this.status_effects.put("frozen", 0.0);
+            this.status_effects.put("shocked", 0.0);
+            this.status_effects.put("heal_over_time", 0.0);
+            this.status_effects.put("guarding", 0.0);
 
         } catch (IOException e) {
             throw new IllegalStateException("Could not read /edu/drake/game_data.json", e);
@@ -66,18 +74,50 @@ public class Player extends Entity {
         return this.max_mp;
     }
 
+    public void increaseMaxHP(double percent) {
+        this.max_hp += this.max_hp * percent;
+    }
+
+    public void increaseMaxMP(double percent) {
+        this.max_mp += this.max_mp * percent;
+    }
+
     public void increaseStrength() {
         this.strength++;
     }
 
     public void increaseMagic() {
         this.magic++;
-        this.max_mp += 5;
+        this.max_mp += 3;
+
+        if (this.skills.contains("Mana_bonus")) {
+            this.max_mp += 1;
+        }
+
+        if (this.skills.contains("Mana_gain")) {
+            this.max_mp += 1;
+        }
+
+        if (this.skills.contains("Mana_surge")) {
+            this.max_mp += 2;
+        }
     }
 
     public void increaseVitality() {
         this.vitality++;
-        this.max_hp += 10;
+        this.max_hp += 5;
+
+        if (this.skills.contains("Life_bonus")) {
+            this.max_hp += 2;
+        }
+
+        if (this.skills.contains("Life_gain")) {
+            this.max_hp += 3;
+        }
+
+        if (this.skills.contains("Life_surge")) {
+            this.max_hp += 5;
+        }
     }
 
     public void increaseAgility() {
@@ -126,5 +166,17 @@ public class Player extends Entity {
             this.hp + "/" + this.max_hp + "HP" + " " + this.mp + "/" + this.max_mp + "MP" + '\n' +
             "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
             this.getAffinities();
+    }
+
+    public void addSkill(String skillName) {
+        this.skills.add(skillName);
+    }
+
+    public ArrayList<String> getActiveSkills() {
+        return activeSkills;
+    }
+
+    public void addActiveSkill(String skillName) {
+        this.activeSkills.add(skillName);
     }
 }
