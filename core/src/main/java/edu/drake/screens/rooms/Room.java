@@ -7,10 +7,10 @@ import edu.drake.Player;
 
 public interface Room {
     public enum RoomState {
-        SELECT_NEXT_ROOM,
-        VIEW_DETAILS,
-        PAUSE_MENU,
-        CURRENT_ROOM,
+        SELECTING_NEXT_ROOM,
+        VIEWING_DETAILS,
+        PAUSED,
+        ACTIVE,
     }
 
     public default void displayRoomSelect(Table root, Player player) {
