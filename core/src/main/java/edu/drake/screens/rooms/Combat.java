@@ -6,9 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 
 import edu.drake.Main;
 import edu.drake.Player;
-import edu.drake.screens.UIScreen;
 
-public class Combat extends UIScreen implements Room {
+public class Combat extends Room {
     public Combat(Main game) {
         super(game);
     }
