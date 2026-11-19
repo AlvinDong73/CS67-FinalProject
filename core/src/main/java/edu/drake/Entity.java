@@ -31,6 +31,13 @@ public abstract class Entity implements Serializable {
         return this.hp;
     }
 
+    public void increaseHP(double amount) {
+        this.hp += amount;
+        if (this.hp > this.max_hp) {
+            this.hp = this.max_hp;
+        }
+    }
+
     public int getMaxHp() {
         return this.max_hp;
     }
@@ -122,10 +129,27 @@ public abstract class Entity implements Serializable {
     public void healOverTime() {
         double amount = this.status_effects.get("heal_over_time") % 100;
 
-        if (this.status_effects.get("heal_over_time") < 100) {
-            this.status_effects.replace("heal_over_time", 0.0);
-        } else {
+        if (this.status_effects.get("heal_over_time") > 100) {
+            if (checkForSkill("Heal_amp")) {
+                increaseHP(amount * 1.5);
+            } else if (checkForSkill("Heal_boost")) {
+                increaseHP(amount * 1.25);
+            } else {
+                increaseHP(amount);
+            }
 
+            this.status_effects.replace("heal_over_time", this.status_effects.get("heal_over_time") - 100);
+        } else if (this.status_effects.get("heal_over_time") > 0) {
+            this.status_effects.replace("heal_over_time", 0.0);
         }
+    }
+
+    public void addHealOverTime(int amount, int duration) {
+        double value = duration * 100 + amount;
+        this.status_effects.replace("heal_over_time", value);
+    }
+
+    public double getHealOverTime() {
+        return this.status_effects.get("heal_over_time");
     }
 }

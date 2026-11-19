@@ -3,7 +3,6 @@ package edu.drake;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-import java.util.Locale;
 
 public class Combat {
     private static ArrayList<Entity> turnOrder;
@@ -38,6 +37,7 @@ public class Combat {
 
                     player.clearAilment();
                     player.clearGuard();
+                    player.healOverTime();
 
                     String choice = "";
                     String[] choiceList;
@@ -53,16 +53,62 @@ public class Combat {
 
                         case "skill":
                             if (choiceList.length == 1) {
-                                System.out.println("Skills list");
+                                System.out.println("Skills list: " + player.getActiveSkills());
                             } else {
                                 currentSkill = new Skill(choiceList[1]);
                                 System.out.println("Use skill " + currentSkill.getName());
+
+                                if (currentSkill.getTarget().equals("single-target")) {
+                                    System.out.println("Select target: ");
+                                    String target = input.nextLine();
+
+                                    for (Enemy enemy : enemiesList) {
+                                        if (enemy.getName().equals(target)) {
+                                            currentEnemy = enemy;
+                                        }
+                                    }
+
+                                    int numHits;
+                                    if (currentSkill.getMinHits() != currentSkill.getMaxHits()) {
+                                        numHits = random.nextInt(currentSkill.getMinHits(), currentSkill.getMaxHits());
+                                    } else {
+                                        numHits = 1;
+                                    }
+
+                                    for (int j=0; j<numHits; j++) {
+                                        useSkill(player, currentEnemy, currentSkill);
+                                    }
+
+                                } else if (currentSkill.getTarget().equals("all")) {
+                                    int numHits;
+                                    for (Enemy enemy : enemiesList) {
+                                        if (currentSkill.getMinHits() != currentSkill.getMaxHits()) {
+                                            numHits = random.nextInt(currentSkill.getMinHits(), currentSkill.getMaxHits());
+                                        } else {
+                                            numHits = 1;
+                                        }
+                                        
+                                        for (int j=0; j<numHits; j++) {
+                                            useSkill(player, enemy, currentSkill);
+                                        }
+                                    }
+
+                                } else if (currentSkill.getTarget().equals("random-target")) {
+                                    int numHits = random.nextInt(currentSkill.getMinHits(), currentSkill.getMaxHits());
+                                    for (int j=0; j<numHits; j++) {
+                                        currentEnemy = enemiesList.get(random.nextInt(enemiesList.size()));
+                                        useSkill(player, currentEnemy, currentSkill);
+                                    }
+
+                                } else if (currentSkill.getTarget().equals("self")) {
+                                    useSkill(player, null, currentSkill);
+                                }
                             }
                             break;
 
                         case "item":
                             if (choiceList.length == 1) {
-                                System.out.println("Item list");
+                                System.out.println("Inventory: " + player.getInventory());
                             } else {
                                 System.out.println("Use item " + choiceList[1]);
                             }
@@ -77,16 +123,29 @@ public class Combat {
                 } else if (turnOrder.get(i).getType().equals("enemy")) {
                     currentEnemy = turnOrder.get(i);
                     System.out.println("\n------ " + currentEnemy.getName() + "'s turn ------");
+
+                    currentEnemy.clearAilment();
+                    currentEnemy.clearGuard();
+                    currentEnemy.healOverTime();
+
                     int enemyChoiceIndex = random.nextInt(currentEnemy.getSkills().size());
                     String enemyChoice = currentEnemy.getSkills().get(enemyChoiceIndex);
 
-                    if (enemyChoice.equals("attack")) {
+                    if (enemyChoice.equals("Attack")) {
                         System.out.println("Melee atack");
                     } else {
                         System.out.println("Use skill " + enemyChoice);
                     }
                 }
             }
+        }
+    }
+
+    public static void useSkill(Entity attacker, Entity receiver, Skill skill) {
+        if (receiver == null) {
+            System.out.println(attacker.getName() + " is using " + skill.getName());
+        } else {
+            System.out.println(attacker.getName() + " is using " + skill.getName() + " on " + receiver.getName());
         }
     }
 }
