@@ -3,32 +3,26 @@ package edu.drake.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.utils.Align;
 
 import edu.drake.Main;
+import edu.drake.screens.rooms.Combat;
 
-public class MainMenu extends BaseScreen {
-    private Skin uiSkin;
+public class MainMenu extends UIScreen {
 
     public MainMenu(Main game) {
         super(game);
-        uiSkin = game.getManager().get("sprites/ui.json", Skin.class);
     }
 
     @Override
-    public void show() {
-        // Prepare your screen here.
-        Table root = new Table(uiSkin);
-        root.setFillParent(true);
+    public void buildUI(Table root) {
         root.row();
         root.add(new Label("Hello World", uiSkin.get("white", LabelStyle.class)))
             .expand()
-            .align(Align.center);
+            .center();
         root.row();
         Table menu = new Table();
         TextButton play = new TextButton("Start New Run", uiSkin);
@@ -36,6 +30,7 @@ public class MainMenu extends BaseScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO: Transition into new run
+                game.setScreen(new Combat(game));
             }
         });
         TextButton continueRun = new TextButton("Continue Run", uiSkin);
@@ -79,16 +74,6 @@ public class MainMenu extends BaseScreen {
             .minWidth(300);
         root.add(menu)
             .expand()
-            .align(Align.center);
-        stage.addActor(root);
+            .center();
     }
-
-    @Override
-    public void render(float delta) {
-        super.render(delta);
-        // Draw your screen here. "delta" is the time since last render in seconds.
-        stage.act(delta);
-        stage.draw();
-    }
-
 }
