@@ -5,4 +5,9 @@ public class ShopData extends RoomData {
         super();
         type = RoomType.SHOP;
     }
+
+    @Override
+    public String toString() {
+        return type.toString() + "\n\nSpend your money on new \n skills, items, and stats";
+    }
 }
