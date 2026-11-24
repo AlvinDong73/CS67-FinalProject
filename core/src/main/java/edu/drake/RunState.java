@@ -36,6 +36,14 @@ public class RunState implements Serializable {
     }
 
     public RoomData generateRoom(ExtraRewardType rewardType) {
+        // player.getRoom checks which floor the player was coming from
+
+        // Player initially starts on floor 0 (or 10 if coming from a previous Boss)
+        // Then the player gets incremented to room 1
+        // The game then needs to produce the room types for room 2
+
+        // If you went from room 8 to room 9, the game needs to generate
+        // room 10 as a boss room
         if (player.getRoom() == ROOMS_PER_LEVEL - 2) {
             return new BossData();
         }
