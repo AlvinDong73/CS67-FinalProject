@@ -43,6 +43,8 @@ public class Player extends Entity {
             this.level = 1;
             this.room = 1;
 
+            level = 1;
+
             this.affinities = new HashMap<String, String>();
             this.affinities.put("phys", "neutral");
             this.affinities.put("pierce", "neutral");
@@ -183,5 +185,14 @@ public class Player extends Entity {
             this.name + ": " + this.hp + "/" + this.max_hp + "HP " + this.mp + "/" + this.max_mp + "MP" +'\n' +
             "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
             this.getAffinities();
+    }
+    
+    public void incrementRoom() {
+        room++;
+    }
+
+    public void nextLevel() {
+        room = 1;
+        level++;
     }
 }
