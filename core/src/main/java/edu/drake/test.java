@@ -5,9 +5,17 @@ import java.util.ArrayList;
 public class test {
     public static void main(String[] args) {
         Player test = new Player("Anjemu");
-        Enemy testEnemy = new Enemy("Pixie");
-        Skill testSkill = new Skill("mana_bonus");
+        Skill testSkill = new Skill("Mana_bonus");
+        String[] testSkills = {"Wind_amp", "Wind_boost", "Agi", "Zan", "Dia"};
+        for (String skill : testSkills) {
+            Skill currentSkill = new Skill(skill);
+            currentSkill.learnSkill(test);
+        }
+
+//        Enemy testEnemy = new Enemy("Pixie");
         ArrayList<Enemy> testEncounter = new ArrayList<Enemy>();
+        testEncounter.add(new Enemy("Pixie"));
+        testEncounter.add(new Enemy("Slime"));
 /*
         // Player stats
         System.out.printf("\nHP: %d", test.getHp());
@@ -88,11 +96,9 @@ public class test {
         System.out.println("Affinities before: " + test.getAffinities());
         Skill nullPhys = new Skill("null_phys");
         nullPhys.learnSkill(test);
-        System.out.println("\nAffinities after: " + test.getAffinities());
-*/
+        System.out.println("\nAffinities after: " + test.getAffinities()); */
+
         // Combat
-        testEncounter.add(new Enemy("Pixie"));
-        testEncounter.add(new Enemy("Slime"));
         Combat.startCombat(test, testEncounter);
     }
 }

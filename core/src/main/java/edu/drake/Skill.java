@@ -16,6 +16,7 @@ public class Skill implements Serializable {
     private int cost;
     private int level;
     private ArrayList<HashSet<String>> requirements = new ArrayList<>();
+    private ArrayList<Skill> parents = new ArrayList<>();
     private String[] effect;
     private String target;
     private int critChance;
@@ -23,8 +24,7 @@ public class Skill implements Serializable {
     private String additionalEffect, additionalEffectCondition;
 
     public Skill (String skillName) {
-        skillName = skillName.substring(0, 1).toUpperCase(Locale.ROOT) + // capitalize name for testing
-            skillName.substring(1).toLowerCase(Locale.ROOT);
+        skillName = Combat.capitalize(skillName);
 
         try (InputStream input = Player.class.getResourceAsStream("/edu/drake/game_data.json")) {
             if (input == null) {
@@ -47,11 +47,15 @@ public class Skill implements Serializable {
 
                 if (requirementNode.isArray()) {
                     for (JsonNode subRequirement : requirementNode) {
-                        mainRequirement.add(subRequirement.asText());
+                        Skill currentSkill = new Skill(subRequirement.asText());
+                        mainRequirement.add(currentSkill.getName());
+                        currentSkill.addParent(this);
                     }
 
                 } else {
-                    mainRequirement.add(requirementNode.asText());
+                    Skill currentSkill = new Skill(requirementNode.asText());
+                    mainRequirement.add(currentSkill.getName());
+                    currentSkill.addParent(currentSkill);
                 }
 
                 this.requirements.add(mainRequirement);
@@ -128,10 +132,10 @@ public class Skill implements Serializable {
                 case "buff":
                     this.cost = skillData.get("mp_cost").asInt();
 
-                    if (Double.valueOf(this.effect[0]) > 1 | this.subtype.equals("recovery")) {
-                        this.target = "self";
-                    } else {
+                    if (Double.valueOf(this.effect[0]) < 0 | this.name.equals("Dekaja")) {
                         this.target = "all";
+                    } else {
+                        this.target = "self";
                     }
                     break;
 
@@ -150,7 +154,11 @@ public class Skill implements Serializable {
     }
 
     public String getType() {
-        return this.type + " " + this.subtype;
+        return this.type;
+    }
+
+    public String getSubType() {
+        return this.subtype;
     }
 
     public int getLevel() {
@@ -226,6 +234,12 @@ public class Skill implements Serializable {
 
         } else if (this.subtype.equals("affinity")) {
             player.setAffinity(this.effect[0], this.effect[2]);
+        }
+    }
+
+    public void addParent(Skill skill) {
+        if (!this.parents.contains(skill)) {
+            this.parents.add(skill);
         }
     }
 }

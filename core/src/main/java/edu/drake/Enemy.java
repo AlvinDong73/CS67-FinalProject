@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Enemy extends Entity {
 
-    private HashSet<String> drops;
+    private ArrayList<String> drops;
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     public Enemy(String name) {
@@ -45,7 +45,7 @@ public class Enemy extends Entity {
             this.affinities.put("light", enemyData.get("affinities").get("light").asText());
             this.affinities.put("dark", enemyData.get("affinities").get("dark").asText());
 
-            this.drops = new HashSet<>();
+            this.drops = new ArrayList<>();
             for (JsonNode drop : enemyData.path("drops")) {
                 this.drops.add(drop.asText());
             }
@@ -65,14 +65,7 @@ public class Enemy extends Entity {
         }
     }
 
-    public HashSet<String> getDrops() {
+    public ArrayList<String> getDrops() {
         return this.drops;
-    }
-
-    public String toString() {
-        return
-            this.name + ": " + this.hp + "/" + this.max_hp + "HP" + '\n' +
-            "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
-            this.getAffinities();
     }
 }

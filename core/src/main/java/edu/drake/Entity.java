@@ -35,6 +35,8 @@ public abstract class Entity implements Serializable {
         this.hp += amount;
         if (this.hp > this.max_hp) {
             this.hp = this.max_hp;
+        } else if (this.hp < 0) {
+            this.hp = 0;
         }
     }
 
@@ -42,19 +44,19 @@ public abstract class Entity implements Serializable {
         return this.max_hp;
     }
 
-    public int getStrength() {
+    public double getStrength() {
         return this.strength;
     }
 
-    public int getMagic() {
+    public double getMagic() {
         return this.magic;
     } 
 
-    public int getVitality() {
+    public double getVitality() {
         return this.vitality;
     }
 
-    public int getAgility() {
+    public double getAgility() {
         return this.agility;
     }
 
@@ -86,8 +88,37 @@ public abstract class Entity implements Serializable {
         return this.affinities.get(element);
     }
 
+    public double getStatBooster(String stat) {
+        return this.status_effects.get(stat);
+    }
+
+    public void setStatBooster(String stat, double amount) {
+        if (stat.equals("attack")) {
+            this.status_effects.replace("phys_attack", this.status_effects.get("phys_attack") + amount);
+            this.status_effects.replace("magic_attack", this.status_effects.get("magic_attack") + amount);
+        } else {
+            this.status_effects.replace(stat, this.status_effects.get(stat) + amount);
+        }
+
+        String[] stats = {"phys_attack", "magic_attack", "defense"};
+        for (String statToCheck : stats) {
+            if (this.status_effects.get(statToCheck) > 1.5) {
+                this.status_effects.replace(statToCheck, 1.5);
+            } else if (this.status_effects.get(statToCheck) < 0.5) {
+                this.status_effects.replace(statToCheck, 0.5);
+            }
+        }
+    }
+
+    public void clearStatBoosts() {
+        String[] stats = {"phys_attack", "magic_attack", "defense"};
+        for (String statToCheck : stats) {
+            this.status_effects.replace(statToCheck, 1.0);
+        }
+    }
+
     public boolean hasAilment(String ailment) {
-        if (this.status_effects.get(ailment.toLowerCase()) == 1) {
+        if (this.status_effects.get(ailment.toLowerCase()) == 1.0) {
             return true;
         }
         return false;
@@ -151,5 +182,12 @@ public abstract class Entity implements Serializable {
 
     public double getHealOverTime() {
         return this.status_effects.get("heal_over_time");
+    }
+
+    public String toString() {
+        return
+            this.name + ": " + this.hp + "/" + this.max_hp + "HP" + '\n' +
+            "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
+            this.getAffinities();
     }
 }

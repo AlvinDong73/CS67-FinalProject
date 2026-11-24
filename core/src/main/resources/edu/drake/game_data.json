@@ -96,7 +96,7 @@
                 "type": "passive boost",
                 "level": 2,
                 "requirements": ["Lunge", "Needle_shot"],
-                "effect": "1.1 x crit_chance"
+                "effect": "1.2 x crit_chance"
             },
             "Freeze_boost": {
                 "type": "passive boost",
@@ -115,21 +115,21 @@
                 "mp_cost": 8,
                 "level": 2,
                 "requirements": ["Lunge"],
-                "effect": "1.25 phys attack"
+                "effect": "0.25 phys_attack"
             },
             "Makakaja": {
                 "type": "buff magic",
                 "mp_cost": 8,
                 "level": 2,
                 "requirements": [["Agi", "Bufu", "Zio", "Zan"]],
-                "effect": "1.25 magic attack"
+                "effect": "0.25 magic_attack"
             },
             "Rakukaja": {
                 "type": "buff defense",
                 "mp_cost": 8,
                 "level": 2,
                 "requirements": ["Dia"],
-                "effect": "1.25 defense"
+                "effect": "0.25 defense"
             },
             "Assault_dive": {
                 "type": "strength phys",
@@ -321,14 +321,14 @@
                 "mp_cost": 12,
                 "level": 3,
                 "requirements": ["Rakukaja", ["Diarama", "Life_gain", "Life_aid"]],
-                "effect": "0.66 attack"
+                "effect": "-0.25 attack"
             },
             "Rakunda": {
                 "type": "buff defense",
                 "mp_cost": 12,
                 "level": 3,
                 "requirements": [["Tarukaja", "Makakaja"], ["Berserk", "Rapid_needle", "Agilao", "Bufula", "Zionga", "Zanma"]],
-                "effect": "0.66 defense"
+                "effect": "-0.25 defense"
             },
             "Megaton_press": {
                 "type": "strength phys",
@@ -349,7 +349,7 @@
                 "hp_cost": 13,
                 "level": 3,
                 "requirements": ["Maragi", "Berserk", "Rakunda"],
-                "effect": "50 damage 15 % crit all + debuff defense 0.66"
+                "effect": "50 damage 15 % crit all + debuff defense -0.25"
             },
             "Blast_arrow": {
                 "type": "strength pierce",
@@ -363,7 +363,7 @@
                 "hp_cost": 14,
                 "level": 3,
                 "requirements": [["Bufula", "Mabufu"], ["Rapid_needle", "Shock_needle"], "Tarunda"],
-                "effect": "45 damage 20 % crit single-target + debuff attack 0.66"
+                "effect": "45 damage 20 % crit single-target + debuff attack -0.25"
             },
             "Fire_breath": {
                 "type": "magic fire",
@@ -511,21 +511,21 @@
                 "level": 4,
                 "mp_cost": 16,
                 "requirements": ["Tarukaja", "Rakunda", ["Rampage", "Scald", "Icicle_shot"]],
-                "effect": "1.5 phys attack"
+                "effect": "0.5 phys attack"
             },
             "Concentrate": {
                 "type": "buff magic",
                 "level": 4,
                 "mp_cost": 16,
                 "requirements": ["Makakaja", "Rakunda", ["Blizzard", "Tempest", "Megido"]],
-                "effect": "1.5 magic attack"
+                "effect": "0.5 magic attack"
             },
             "Fortify": {
                 "type": "buff defense",
                 "level": 4,
                 "mp_cost": 16,
                 "requirements": ["Rakukaja", "Tarunda", ["Recarm", "Life_gain", "Mana_gain"]],
-                "effect": "1.5 defense"
+                "effect": "0.5 defense"
             },
             "Critical_slash": {
                 "type": "strength phys",
@@ -700,14 +700,14 @@
                 "mp_cost": 24,
                 "level": 5,
                 "requirements": ["Fortify", "Diarahan", "Heal_amp"],
-                "effect": "0.33 attack"
+                "effect": "-0.5 attack"
             },
             "Acid_breath": {
                 "type": "buff defense",
                 "mp_cost": 24,
                 "level": 5,
                 "requirements": ["Charge", "Concentrate", ["Divine_shot", "Tathlum_shot", "Agidyne", "Bufudyne", "Ziodyne", "Zandyne"]],
-                "effect": "0.33 attack"
+                "effect": "-0.5 attack"
             },
             "Freikugel": {
                 "type": "strength non-elemental",
@@ -782,7 +782,7 @@
         },
         "enemies": {
             "Pixie": {
-                "max_hp": 20,
+                "max_hp": 50,
                 "strength": 1,
                 "magic": 4,
                 "vitality": 2,
@@ -799,13 +799,13 @@
                     "light": "neutral",
                     "dark": "neutral"
                 },
-                "drops": ["Medicine", "Zio_stone"]
+                "drops": ["Medicine", "Zionga_stone"]
             },
             "Slime": {
-                "max_hp": 45,
+                "max_hp": 70,
                 "strength": 2,
                 "magic": 1,
-                "vitality": 4,
+                "vitality": 2,
                 "agility": 1,
                 "money": 15,
                 "skills": ["Attack", "Lunge"],
@@ -822,7 +822,7 @@
                 "drops": []
             },
             "Onmoraki": {
-                "max_hp": 30,
+                "max_hp": 55,
                 "strength": 2,
                 "magic": 3,
                 "vitality": 2,
@@ -842,7 +842,7 @@
                 "drops": ["Medicine", "Chakra_drop"]
             },
             "Mandrake": {
-                "max_hp": 35,
+                "max_hp": 60,
                 "strength": 3,
                 "magic": 2,
                 "vitality": 2,
@@ -862,7 +862,7 @@
                 "drops": ["Medicine", "Needle_orb"]
             },
             "Preta": {
-                "max_hp": 40,
+                "max_hp": 80,
                 "strength": 4,
                 "magic": 2,
                 "vitality": 3,
@@ -879,10 +879,10 @@
                     "light": "neutral",
                     "dark": "neutral"
                 },
-                "drops": ["Medicine", "Zio_stone"]
+                "drops": ["Medicine", "Bufula_stone"]
             },
             "Angel": {
-                "max_hp": 35,
+                "max_hp": 70,
                 "strength": 1,
                 "magic": 5,
                 "vitality": 2,
@@ -902,7 +902,7 @@
                 "drops": ["Medicine", "Chakra_drop", "Hama_stone"]
             },
             "Specter": {
-                "max_hp": 30,
+                "max_hp": 50,
                 "strength": 1,
                 "magic": 1,
                 "vitality": 1,

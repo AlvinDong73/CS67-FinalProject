@@ -40,6 +40,8 @@ public class Player extends Entity {
             this.activeSkills = new ArrayList<String>();
             this.activeSkills.add("Attack");
             this.inventory = new HashMap<String, Integer>();
+            this.level = 1;
+            this.room = 1;
 
             this.affinities = new HashMap<String, String>();
             this.affinities.put("phys", "neutral");
@@ -74,6 +76,15 @@ public class Player extends Entity {
         return this.max_mp;
     }
 
+    public void increaseMP(double amount) {
+        this.mp += amount;
+        if (this.mp > this.max_hp) {
+            this.mp = this.max_hp;
+        } else if (this.mp < 0) {
+            this.mp = 0;
+        }
+    }
+
     public void increaseMaxHP(double percent) {
         this.max_hp += this.max_hp * percent;
     }
@@ -88,35 +99,29 @@ public class Player extends Entity {
 
     public void increaseMagic() {
         this.magic++;
-        this.max_mp += 3;
-
-        if (this.skills.contains("Mana_bonus")) {
-            this.max_mp += 1;
-        }
-
-        if (this.skills.contains("Mana_gain")) {
-            this.max_mp += 1;
-        }
-
+        
         if (this.skills.contains("Mana_surge")) {
-            this.max_mp += 2;
+            this.max_mp += 15;
+        } else if (this.skills.contains("Mana_gain")) {
+            this.max_hp += 11;
+        } else if (this.skills.contains("Mana_bonus")) {
+            this.max_hp += 8;
+        } else {
+            this.max_hp += 5;
         }
     }
 
     public void increaseVitality() {
         this.vitality++;
-        this.max_hp += 5;
-
-        if (this.skills.contains("Life_bonus")) {
-            this.max_hp += 2;
-        }
-
-        if (this.skills.contains("Life_gain")) {
-            this.max_hp += 3;
-        }
-
+        
         if (this.skills.contains("Life_surge")) {
-            this.max_hp += 5;
+            this.max_hp += 20;
+        } else if (this.skills.contains("Life_gain")) {
+            this.max_hp += 16;
+        } else if (this.skills.contains("Life_bonus")) {
+            this.max_hp += 13;
+        } else {
+            this.max_hp += 10;
         }
     }
 
@@ -161,13 +166,6 @@ public class Player extends Entity {
         return room;
     }
 
-    public String toString() {
-        return
-            this.hp + "/" + this.max_hp + "HP" + " " + this.mp + "/" + this.max_mp + "MP" + '\n' +
-            "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
-            this.getAffinities();
-    }
-
     public void addSkill(String skillName) {
         this.skills.add(skillName);
     }
@@ -178,5 +176,12 @@ public class Player extends Entity {
 
     public void addActiveSkill(String skillName) {
         this.activeSkills.add(skillName);
+    }
+
+    public String toString() {
+        return
+            this.name + ": " + this.hp + "/" + this.max_hp + "HP " + this.mp + "/" + this.max_mp + "MP" +'\n' +
+            "St: " + this.strength + " | Ma: " + this.magic + " | Vi: " + this.vitality + " | Ag: " + this.agility + 
+            this.getAffinities();
     }
 }
