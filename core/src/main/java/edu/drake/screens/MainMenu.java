@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import edu.drake.Main;
+import edu.drake.RunState;
 import edu.drake.screens.rooms.Combat;
 
 public class MainMenu extends UIScreen {
@@ -18,7 +19,7 @@ public class MainMenu extends UIScreen {
     }
 
     @Override
-    public void buildUI(Table root) {
+    public void initUI(Table root) {
         root.row();
         root.add(new Label("Hello World", uiSkin.get("white", LabelStyle.class)))
             .expand()
@@ -30,18 +31,20 @@ public class MainMenu extends UIScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 // TODO: Transition into new run
-                game.setScreen(new Combat(game));
+                RunState state = new RunState(game.getPreferences().getString("name", "The Nameless"));
+                game.setRun(state);
+                game.setScreen(new Combat(game, state.getPlayer()));
             }
         });
         TextButton continueRun = new TextButton("Continue Run", uiSkin);
         continueRun.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                // TODO: Transition into saved run
+                game.load();
+                
             }
         });
-        // TODO: Check if a preexisting run has been saved
-        continueRun.setDisabled(true);
+        continueRun.setDisabled(!game.hasSavedRun());
         TextButton settings = new TextButton("Settings", uiSkin);
         settings.addListener(new ChangeListener() {
             @Override

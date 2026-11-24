@@ -7,10 +7,13 @@ import edu.drake.Main;
 
 public abstract class UIScreen extends BaseScreen {
     protected Skin uiSkin;
+    protected Table uiRoot;
 
     public UIScreen(Main game) {
         super(game);
         uiSkin = game.getManager().get("sprites/ui.json", Skin.class);
+        uiRoot = new Table(uiSkin);
+        uiRoot.setFillParent(true);
     }
 
     @Override
@@ -28,11 +31,9 @@ public abstract class UIScreen extends BaseScreen {
 
     @Override
     public void show() {
-        Table root = new Table(uiSkin);
-        root.setFillParent(true);
-        buildUI(root);
-        stage.addActor(root);
+        initUI(uiRoot);
+        stage.addActor(uiRoot);
     }
 
-    public abstract void buildUI(Table root);
+    public abstract void initUI(Table root);
 }
