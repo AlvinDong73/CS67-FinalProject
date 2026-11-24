@@ -33,7 +33,7 @@ public class MainMenu extends UIScreen {
                 // TODO: Transition into new run
                 RunState state = new RunState(game.getPreferences().getString("name", "The Nameless"));
                 game.setRun(state);
-                game.setScreen(new Combat(game, state.getPlayer()));
+                game.setScreen(new Combat(game));
             }
         });
         TextButton continueRun = new TextButton("Continue Run", uiSkin);

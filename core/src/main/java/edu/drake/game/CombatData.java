@@ -32,6 +32,9 @@ public class CombatData extends RoomData {
 
     @Override
     public String toString() {
+        if (rewardType == ExtraRewardType.BOSS_REWARD) {
+            return "";
+        }
         String reward = "";
         switch (rewardType) {
             case MONEY:

@@ -41,6 +41,8 @@ public class Player extends Entity {
             this.activeSkills.add("Attack");
             this.inventory = new HashMap<String, Integer>();
 
+            level = 1;
+
             this.affinities = new HashMap<String, String>();
             this.affinities.put("phys", "neutral");
             this.affinities.put("pierce", "neutral");
@@ -178,5 +180,14 @@ public class Player extends Entity {
 
     public void addActiveSkill(String skillName) {
         this.activeSkills.add(skillName);
+    }
+
+    public void incrementRoom() {
+        room++;
+    }
+
+    public void nextLevel() {
+        room = 1;
+        level++;
     }
 }

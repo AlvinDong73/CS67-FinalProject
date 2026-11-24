@@ -22,6 +22,12 @@ public class RunState implements Serializable {
     private RoomData current;
     private boolean seenRandomShop;
 
+    private final int ROOMS_PER_LEVEL = 10;
+
+    public void setSeenRandomShop(boolean seenRandomShop) {
+        this.seenRandomShop = seenRandomShop;
+    }
+
     public RunState(String name) {
         player = new Player(name);
         seenRandomShop = false;
@@ -30,7 +36,7 @@ public class RunState implements Serializable {
     }
 
     public RoomData generateRoom(ExtraRewardType rewardType) {
-        if (player.getRoom() >= 10) {
+        if (player.getRoom() == ROOMS_PER_LEVEL - 2) {
             return new BossData();
         }
         if (MathUtils.random() < 0.05 && !seenRandomShop && player.getRoom() > 2) {
@@ -41,10 +47,10 @@ public class RunState implements Serializable {
     }
 
     public RoomData generateRoom(ExtraRewardType rewardType, boolean noElites) {
-        if (player.getRoom() >= 10) {
+        if (player.getRoom() == ROOMS_PER_LEVEL - 2) {
             return new BossData();
         }
-        if (MathUtils.random() < 0.05 && !seenRandomShop && player.getRoom() > 2) {
+        if (MathUtils.random() < 0.1 && !seenRandomShop && player.getRoom() > 2) {
             seenRandomShop = true;
             return new ShopData();
         }
@@ -60,6 +66,7 @@ public class RunState implements Serializable {
     }
 
     public void setRooms() {
+        System.out.println(player.getRoom());
         List<ExtraRewardType> choices = new ArrayList<>(Arrays.asList(ExtraRewardType.MONEY,
                 ExtraRewardType.SKILL,
                 ExtraRewardType.STAT));
@@ -67,10 +74,10 @@ public class RunState implements Serializable {
         ExtraRewardType r1 = choices.remove(MathUtils.random(2));
         ExtraRewardType r2 = choices.remove(MathUtils.random(1));
 
-        if (player.getRoom() >= 10) {
+        if (player.getRoom() == ROOMS_PER_LEVEL - 2) {
             left = generateRoom(r1);
             right = null;
-        } else if (player.getRoom() == 9) {
+        } else if (player.getRoom() == ROOMS_PER_LEVEL - 3) {
             left = new ShopData();
             seenRandomShop = true;
             right = generateRoom(r1);
@@ -88,6 +95,10 @@ public class RunState implements Serializable {
         return current;
     }
 
+    public void setCurrent(RoomData current) {
+        this.current = current;
+    }
+
     public RoomData getLeft() {
         return left;
     }
@@ -98,9 +109,5 @@ public class RunState implements Serializable {
 
     public Player getPlayer() {
         return player;
-    }
-
-    public void levelUp() {
-
     }
 }

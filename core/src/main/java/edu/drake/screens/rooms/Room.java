@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import edu.drake.Main;
 import edu.drake.Player;
 import edu.drake.RunState;
+import edu.drake.game.RoomType;
 import edu.drake.screens.KeyboardInput;
 import edu.drake.screens.UIScreen;
 
@@ -23,10 +24,17 @@ public abstract class Room extends UIScreen {
     protected Player player;
     protected boolean isPaused;
 
-    public Room(Main game, Player player) {
+    public Room(Main game) {
         state = RoomState.ACTIVE;
         isPaused = false;
-        this.player = player;
+        Player p = game.getRun().getPlayer();
+        this.player = game.getRun().getPlayer();
+        if (p.getRoom() >= 10) {
+            p.nextLevel();
+            game.getRun().setSeenRandomShop(false);
+        } else {
+            p.incrementRoom();
+        }
         super(game);
     }
 
@@ -106,7 +114,13 @@ public abstract class Room extends UIScreen {
         left.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                
+                state.setCurrent(state.getLeft());
+                state.setRooms();
+                if (state.getCurrent().getType() != RoomType.SHOP) {
+                    game.setScreen(new Combat(game));
+                } else {
+                    // TODO: Shop screen
+                }
             }
         });
 
@@ -122,7 +136,13 @@ public abstract class Room extends UIScreen {
             right.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    
+                    game.getRun().setCurrent(state.getRight());
+                    state.setRooms();
+                    if (state.getCurrent().getType() != RoomType.SHOP) {
+                        game.setScreen(new Combat(game));
+                    } else {
+                        // TODO: Shop screen
+                    }
                 }
             });
             buttonRow.add(right)

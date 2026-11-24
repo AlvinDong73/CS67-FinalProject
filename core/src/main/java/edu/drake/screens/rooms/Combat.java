@@ -8,11 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import edu.drake.Main;
-import edu.drake.Player;
 
 public class Combat extends Room {
-    public Combat(Main game, Player player) {
-        super(game, player);
+    public Combat(Main game) {
+        super(game);
     }
 
     @Override
