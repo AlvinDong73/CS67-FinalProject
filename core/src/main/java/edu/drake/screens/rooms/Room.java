@@ -27,6 +27,7 @@ public abstract class Room extends UIScreen {
     public Room(Main game) {
         state = RoomState.ACTIVE;
         isPaused = false;
+        game.save();
         Player p = game.getRun().getPlayer();
         this.player = game.getRun().getPlayer();
         if (p.getRoom() >= 10) {

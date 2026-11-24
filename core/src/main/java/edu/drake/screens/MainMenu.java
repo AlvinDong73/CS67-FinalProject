@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import edu.drake.Main;
 import edu.drake.RunState;
+import edu.drake.game.RoomType;
 import edu.drake.screens.rooms.Combat;
 
 public class MainMenu extends UIScreen {
@@ -41,7 +42,11 @@ public class MainMenu extends UIScreen {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 game.load();
-                
+                if (game.getRun().getCurrent().getType() != RoomType.SHOP) {
+                    game.setScreen(new Combat(game));
+                } else {
+                    // TODO: Shop screen
+                }
             }
         });
         continueRun.setDisabled(!game.hasSavedRun());
