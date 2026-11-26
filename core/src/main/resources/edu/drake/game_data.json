@@ -233,14 +233,14 @@
                 "type": "magic light",
                 "mp_cost": 12,
                 "level": 2,
-                "requirements": [["Agilao", "Bufula"], ["Maragi, Mabufu"], "Frostburn"],
+                "requirements": [["Agilao", "Bufula"], ["Maragi", "Mabufu"], "Frostburn"],
                 "effect": "45 damage"
             },
             "Mudo": {
                 "type": "magic dark",
                 "mp_cost": 12,
                 "level": 2,
-                "requirements": [["Zionga, Zanma"], ["Mazio", "Mazan"], "Wind_cutter"],
+                "requirements": [["Zionga", "Zanma"], ["Mazio", "Mazan"], "Wind_cutter"],
                 "effect": "45 damage"
             },
             "Diarama": {
@@ -449,7 +449,7 @@
             "Fire_amp": {
                 "type": "passive boost",
                 "level": 4,
-                "requirements": ["Fire_boost", "Firebreath"],
+                "requirements": ["Fire_boost", "Fire_breath"],
                 "effect": "1.4 x fire damage"
             },
             "Ice_amp": {
@@ -541,6 +541,13 @@
                 "requirements": ["Hama", ["Megaton_press", "Rampage", "Scald"]],
                 "effect": "75 damage 15 % crit"
             },
+            "Shock_shot": {
+                "type": "strength elec",
+                "hp_cost": 14,
+                "level": 3,
+                "requirements": [["Zionga", "Mazio"], ["Rapid_needle", "Shock_needle"], "Rakunda"],
+                "effect": "45 damage 20 % crit single-target + debuff defense -0.25"
+            },
             "Blight": {
                 "type": "strength phys",
                 "hp_cost": 22,
@@ -622,14 +629,14 @@
                 "type": "magic light",
                 "mp_cost": 25,
                 "level": 4,
-                "requirements": ["Hama", "Hama_boost", "Mana_gain"],
+                "requirements": ["Hama", "Light_boost", "Mana_gain"],
                 "effect": "55 damage all"
             },
             "Mamudo": {
                 "type": "magic dark",
                 "mp_cost": 25,
                 "level": 4,
-                "requirements": ["Mudo", "Mudo_boost", "Mana_gain"],
+                "requirements": ["Mudo", "Dark_boost", "Mana_gain"],
                 "effect": "55 damage all"
             },
             "Diarahan": {
